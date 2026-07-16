@@ -28,7 +28,7 @@ jobs:
             10.0.x
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v3
+        uses: github/codeql-action/init@v4
         with:
           languages: csharp
           queries: security-extended
@@ -39,4 +39,4 @@ jobs:
           dotnet build Koras.Dataverse.slnx --configuration Release --no-restore
 
       - name: Analyze
-        uses: github/codeql-action/analyze@v3
+        uses: github/codeql-action/analyze@v4
