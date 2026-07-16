@@ -441,9 +441,9 @@ var fetch = FetchXml.For("account")
 var page = await dataverse.FetchAsync(fetch, ct);
 ```
 
-> `FetchAsync` accepts the built query; an overload accepting the raw FetchXML `string`
-> (for hand-written queries) is anticipated and **subject to implementation review**.
-> Note the plan's sample passes the result of `Build()` — both forms must remain valid.
+> `FetchAsync` accepts the built `FetchXmlQuery`. Hand-written FetchXML text is executed by
+> wrapping it first: `dataverse.FetchAsync(FetchXmlQuery.FromXml(xmlText), ct)` — `FromXml`
+> validates well-formedness and extracts the target table, so no raw-`string` overload exists.
 
 ---
 
@@ -598,10 +598,10 @@ API inventory.
 - **`DataverseError`** — sealed immutable record: `Category`, `DataverseErrorCode`
   (`string?`), `HttpStatusCode` (`int?`), `Message` (`string`, never null, safe to log),
   `RequestId` (`string?`), `RetryAfter` (`TimeSpan?`), `IsTransient` (`bool`).
-- **`DataverseException`** — sealed exception exposing `Error` plus convenience
-  `Category`/`IsTransient`/`RequestId` pass-throughs. Public constructors accept a
-  `DataverseError` (and optional inner exception); it is constructible by consumers for
-  test doubles.
+- **`DataverseException`** — deliberately non-sealed exception (the one intentional
+  inheritance point) exposing `Error` plus convenience `Category`/`IsTransient`
+  pass-throughs. Public constructors accept a `DataverseError` (and optional inner
+  exception); it is constructible by consumers for test doubles.
 - **Thread-safety.** Immutable.
 
 ---
@@ -616,25 +616,24 @@ API inventory.
 ```csharp
 public interface IDataverseTokenProvider
 {
-    ValueTask<DataverseAccessToken> GetTokenAsync(string scope,
+    ValueTask<string> GetAccessTokenAsync(Uri environmentUrl,
         CancellationToken cancellationToken = default);
 }
-
-public readonly record struct DataverseAccessToken(string Token, DateTimeOffset ExpiresOn);
 ```
 
-- `ValueTask` because the overwhelmingly common path is a synchronous cache hit. The
-  carrier-struct shape is **subject to implementation review** (the interface + expiry
-  contract is fixed).
-- **Exceptions.** Implementations should throw their natural exceptions; the SDK maps
-  provider failures to `DataverseException` with category `Authentication`
-  (see error model §2).
+- `ValueTask` because the overwhelmingly common path is a synchronous cache hit.
+  Implementations own caching and expiry (the default `TokenCredentialTokenProvider` caches
+  until five minutes before expiry with single-flight refresh); the SDK passes the
+  environment URL so one provider can serve multiple environments.
+- **Exceptions.** Implementations should throw `DataverseException` with category
+  `Authentication` for acquisition failures (the built-in provider wraps credential
+  exceptions this way); `OperationCanceledException` flows through untouched.
 
 ### 9.2 Credential option helpers
 
 The `Use*` selection members documented at §2.9 (`UseClientSecret`, `UseCertificate`,
 `UseManagedIdentity`, `UseInteractive`, `UseDefault`, `UseTokenCredential`,
-`UseTokenProvider<T>`). Azure-typed members ship in the core package (see the placement note
+`UseTokenProvider`). Azure-typed members ship in the core package (see the placement note
 in §2.9).
 
 ---
@@ -642,64 +641,66 @@ in §2.9).
 ## 10. Namespace `Microsoft.Extensions.DependencyInjection`
 
 Shipped in `Koras.Dataverse` (ADR-0003), except the `IDataverseClientFactory` interface,
-which master plan §2 places in `Abstractions` (see §10.3).
+which lives in `Abstractions` in the `Koras.Dataverse` namespace (see §10.3). *(Sections
+below reflect the implemented surface.)*
 
 ### 10.1 `AddDataverse`
 
 ```csharp
 public static class DataverseServiceCollectionExtensions
 {
-    public static IServiceCollection AddDataverse(this IServiceCollection services,
+    public const string DefaultClientName = "Default";
+
+    public static DataverseBuilder AddDataverse(this IServiceCollection services,
         Action<DataverseClientOptions> configure);
-    public static IServiceCollection AddDataverse(this IServiceCollection services,
+    public static DataverseBuilder AddDataverse(this IServiceCollection services,
         string name, Action<DataverseClientOptions> configure);
 }
 ```
 
-- Registers named options + DataAnnotations validation (validate-on-start), the token
-  provider, the named `HttpClient` `"Koras.Dataverse:{name}"` with the
-  auth → retry → user-handler pipeline, and singleton `IDataverseClient` /
-  `IMetadataClient` / `ISolutionClient` (default registration binds the unnamed client).
-- A builder-returning overload (for appending user `DelegatingHandler`s and advanced
-  `IHttpClientBuilder` access — see
-  [`../architecture/extension-model.md`](../architecture/extension-model.md) §2) is part of
-  the design; its exact return type is **subject to implementation review**.
-- **Exceptions.** `ArgumentNullException` at registration; `OptionsValidationException` at
-  startup for invalid options (standard options-pattern behavior).
+- Registers named options + validation (validate-on-start via `IValidateOptions`), a per-name
+  cached token provider (keyed singleton), the named `HttpClient` `"Koras.Dataverse:{name}"`
+  with the retry → auth → transport pipeline, the `IDataverseClientFactory` singleton, and a
+  singleton `IDataverseClient` that binds to the `Default` registration (or the single named
+  registration when only one exists; ambiguous otherwise).
+- Returns `Koras.Dataverse.DependencyInjection.DataverseBuilder` (`Services`, `Name`,
+  `HttpClientBuilder`, `AddHttpMessageHandler(...)`) for appending user `DelegatingHandler`s —
+  see [`../architecture/extension-model.md`](../architecture/extension-model.md) §2.
+- **Exceptions.** `ArgumentNullException`/`ArgumentException` at registration;
+  `OptionsValidationException` at startup for invalid options (standard options-pattern
+  behavior).
 
 ### 10.2 `AddDataverseHealthCheck`
 
 ```csharp
-public static class DataverseHealthCheckExtensions
-{
-    public static IHealthChecksBuilder AddDataverseHealthCheck(this IHealthChecksBuilder builder,
-        string? clientName = null, string? healthCheckName = null);
-}
+public static IHealthChecksBuilder AddDataverseHealthCheck(
+    this IHealthChecksBuilder builder,
+    string name = "dataverse",
+    HealthStatus failureStatus = HealthStatus.Unhealthy,
+    IEnumerable<string>? tags = null);
 ```
 
-- Registers a `WhoAmI`-probe health check (KDV-012) against the default or a named client.
-  Parameter list **subject to implementation review** (tags/failure-status pass-throughs
-  follow health-check conventions).
+- Registers the `WhoAmI`-probe `DataverseHealthCheck` (KDV-012) against the default client.
+  Probing a named client is done by registering `DataverseHealthCheck` manually with a
+  factory-resolved client.
 
 ### 10.3 `IDataverseClientFactory`
 
 ```csharp
+namespace Koras.Dataverse;
+
 public interface IDataverseClientFactory
 {
-    IDataverseClient CreateClient(string name);
+    IDataverseClient GetClient(string name);
 }
 ```
 
 - **Purpose.** Resolve named clients for multi-environment scenarios (KDV-010).
 - **Thread-safety.** Service. Returned clients are cached singletons per name; callers do
-  not dispose them. `CreateClient` throws `InvalidOperationException` for an unregistered
-  name.
-- **Placement note.** Master plan §2 lists the interface among `Abstractions` contents while
-  §4 lists it under the `Microsoft.Extensions.DependencyInjection` namespace. This design
-  follows both as written: the interface type is declared in the `Abstractions` assembly in
-  the `Microsoft.Extensions.DependencyInjection` namespace (legal — the namespace carries no
-  dependency), keeping test doubles dependency-free. Flagged for confirmation at
-  implementation review.
+  not dispose them. `GetClient` throws `InvalidOperationException` (listing registered
+  names) for an unregistered name.
+- **Placement.** Declared in the `Abstractions` assembly, `Koras.Dataverse` namespace, so
+  test doubles stay dependency-free.
 
 ---
 

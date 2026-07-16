@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted — 2026-07-16
+Accepted — 2026-07-16 · **Amended — 2026-07-16** (see "Amendment: single Microsoft.Extensions
+version line" below)
 
 ## Context
 
@@ -64,5 +65,19 @@ this single file.
   natively).
 - **Paket.** Rejected: additional toolchain for contributors and CI; CPM is first-party and
   sufficient.
-- **Single unconditioned version per package (no per-TFM split).** Rejected: conflicts with
-  ADR-0002's consumer-friendliness requirement for net8.0 users.
+- **Single unconditioned version per package (no per-TFM split).** Originally rejected as
+  conflicting with ADR-0002's consumer-friendliness requirement for net8.0 users — but see
+  the amendment below.
+
+## Amendment: single Microsoft.Extensions version line (2026-07-16)
+
+Implementation surfaced a hard constraint: `Azure.Core` 1.60.0 (required by `Azure.Identity`)
+transitively floors the dependency graph at Microsoft.Extensions **10.0.x** on every TFM,
+including net8.0. Per-TFM downpinning (8.0.x on net8.0) therefore produces NU1605 package
+downgrades and cannot be honored. Since the 10.0.x Microsoft.Extensions packages themselves
+target net8.0+, net8.0 consumers are unaffected at runtime.
+
+**Amended decision:** `Directory.Packages.props` pins Microsoft.Extensions.* to a single
+10.0.x version line for all TFMs. The per-TFM conditional mechanism described above remains
+the documented pattern should a future dependency graph allow (or require) split versions.
+CPM itself, exact-version pinning, and all other rules are unchanged.

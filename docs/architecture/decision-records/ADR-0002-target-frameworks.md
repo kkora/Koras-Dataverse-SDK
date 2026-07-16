@@ -26,9 +26,11 @@ We will target **net8.0, net9.0, and net10.0** for `Koras.Dataverse.Abstractions
 builder is genuinely valuable inside Dataverse plugin assemblies; it is the only package where
 netstandard2.0 is offered, and its netstandard2.0 build must be complete, not a stub.
 
-Microsoft.Extensions.* dependencies will be **pinned per TFM** via conditional versions in
-Central Package Management (ADR-0009): 8.0.x for net8.0, 9.0.x for net9.0, 10.0.x for
-net10.0, so consumers on older runtimes are not forced to upgrade their platform packages.
+Microsoft.Extensions.* dependencies were intended to be **pinned per TFM** via conditional
+versions in Central Package Management (8.0.x for net8.0, 9.0.x for net9.0, 10.0.x for
+net10.0). **This part was amended during implementation:** `Azure.Core` transitively floors
+the graph at Microsoft.Extensions 10.0.x on all TFMs, so a single 10.0.x version line is used
+instead — see the amendment in ADR-0009. The TFM set itself is unchanged.
 
 TFM lifecycle: TFMs are added/dropped following .NET support lifecycle; dropping a TFM is a
 breaking change released only in a major version
