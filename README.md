@@ -9,8 +9,8 @@ and FetchXML queries with automatic paging, batching, metadata, solutions, retri
 injection, health checks, and OpenTelemetry-ready diagnostics. Web API first, mockable
 everywhere, secure by default.
 
-[![Build](https://github.com/korastechnologies/koras-dataverse/actions/workflows/build.yml/badge.svg)](https://github.com/korastechnologies/koras-dataverse/actions/workflows/build.yml)
-[![Tests](https://github.com/korastechnologies/koras-dataverse/actions/workflows/test.yml/badge.svg)](https://github.com/korastechnologies/koras-dataverse/actions/workflows/test.yml)
+[![Build](https://github.com/kkora/Koras-Dataverse-SDK/actions/workflows/build.yml/badge.svg)](https://github.com/kkora/Koras-Dataverse-SDK/actions/workflows/build.yml)
+[![Tests](https://github.com/kkora/Koras-Dataverse-SDK/actions/workflows/test.yml/badge.svg)](https://github.com/kkora/Koras-Dataverse-SDK/actions/workflows/test.yml)
 [![NuGet](https://img.shields.io/nuget/v/Koras.Dataverse.svg)](https://www.nuget.org/packages/Koras.Dataverse)
 [![Downloads](https://img.shields.io/nuget/dt/Koras.Dataverse.svg)](https://www.nuget.org/packages/Koras.Dataverse)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)

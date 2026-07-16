@@ -12,13 +12,13 @@
     <Company>Koras Technologies</Company>
     <Copyright>Copyright © Koras Technologies</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/korastechnologies/koras-dataverse</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/korastechnologies/koras-dataverse</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/kkora/Koras-Dataverse-SDK</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/kkora/Koras-Dataverse-SDK</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageIcon>icon.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
-    <PackageReleaseNotes>See https://github.com/korastechnologies/koras-dataverse/blob/main/CHANGELOG.md</PackageReleaseNotes>
+    <PackageReleaseNotes>See https://github.com/kkora/Koras-Dataverse-SDK/blob/main/CHANGELOG.md</PackageReleaseNotes>
     <NeutralLanguage>en-US</NeutralLanguage>
 
     <!-- Symbols and Source Link (Source Link for GitHub is built into the .NET 8+ SDK) -->
