@@ -1,0 +1,354 @@
+﻿#nullable enable
+const Koras.Dataverse.Batches.BatchRequest.MaxOperations = 1000 -> int
+Koras.Dataverse.Authentication.IDataverseTokenProvider
+Koras.Dataverse.Authentication.IDataverseTokenProvider.GetAccessTokenAsync(System.Uri! environmentUrl, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<string!>
+Koras.Dataverse.Batches.BatchItemResult
+Koras.Dataverse.Batches.BatchItemResult.BatchItemResult(int index, int statusCode, System.Guid? createdId, Koras.Dataverse.Errors.DataverseError? error) -> void
+Koras.Dataverse.Batches.BatchItemResult.CreatedId.get -> System.Guid?
+Koras.Dataverse.Batches.BatchItemResult.Error.get -> Koras.Dataverse.Errors.DataverseError?
+Koras.Dataverse.Batches.BatchItemResult.Index.get -> int
+Koras.Dataverse.Batches.BatchItemResult.StatusCode.get -> int
+Koras.Dataverse.Batches.BatchItemResult.Succeeded.get -> bool
+Koras.Dataverse.Batches.BatchOperation
+Koras.Dataverse.Batches.BatchOperation.Entity.get -> Koras.Dataverse.Entity?
+Koras.Dataverse.Batches.BatchOperation.Reference.get -> Koras.Dataverse.EntityReference?
+Koras.Dataverse.Batches.BatchOperation.Type.get -> Koras.Dataverse.Batches.BatchOperationType
+Koras.Dataverse.Batches.BatchOperationType
+Koras.Dataverse.Batches.BatchOperationType.Create = 0 -> Koras.Dataverse.Batches.BatchOperationType
+Koras.Dataverse.Batches.BatchOperationType.Delete = 3 -> Koras.Dataverse.Batches.BatchOperationType
+Koras.Dataverse.Batches.BatchOperationType.Update = 1 -> Koras.Dataverse.Batches.BatchOperationType
+Koras.Dataverse.Batches.BatchOperationType.Upsert = 2 -> Koras.Dataverse.Batches.BatchOperationType
+Koras.Dataverse.Batches.BatchRequest
+Koras.Dataverse.Batches.BatchRequest.AddCreate(Koras.Dataverse.Entity! entity) -> Koras.Dataverse.Batches.BatchRequest!
+Koras.Dataverse.Batches.BatchRequest.AddDelete(Koras.Dataverse.EntityReference! reference) -> Koras.Dataverse.Batches.BatchRequest!
+Koras.Dataverse.Batches.BatchRequest.AddDelete(string! tableName, System.Guid id) -> Koras.Dataverse.Batches.BatchRequest!
+Koras.Dataverse.Batches.BatchRequest.AddUpdate(Koras.Dataverse.Entity! entity) -> Koras.Dataverse.Batches.BatchRequest!
+Koras.Dataverse.Batches.BatchRequest.AddUpsert(Koras.Dataverse.Entity! entity) -> Koras.Dataverse.Batches.BatchRequest!
+Koras.Dataverse.Batches.BatchRequest.Atomic.get -> bool
+Koras.Dataverse.Batches.BatchRequest.Atomic.set -> void
+Koras.Dataverse.Batches.BatchRequest.BatchRequest() -> void
+Koras.Dataverse.Batches.BatchRequest.Operations.get -> System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Batches.BatchOperation!>!
+Koras.Dataverse.Batches.BatchResponse
+Koras.Dataverse.Batches.BatchResponse.BatchResponse(System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Batches.BatchItemResult!>! results) -> void
+Koras.Dataverse.Batches.BatchResponse.Results.get -> System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Batches.BatchItemResult!>!
+Koras.Dataverse.Batches.BatchResponse.Succeeded.get -> bool
+Koras.Dataverse.ColumnSet
+Koras.Dataverse.ColumnSet.Columns.get -> System.Collections.Generic.IReadOnlyList<string!>!
+Koras.Dataverse.ColumnSet.IsAll.get -> bool
+Koras.Dataverse.DataverseQueryResult
+Koras.Dataverse.DataverseQueryResult.DataverseQueryResult(System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Entity!>! entities, string? nextLink = null, string? pagingCookie = null, long? totalCount = null, bool? moreRecords = null) -> void
+Koras.Dataverse.DataverseQueryResult.Entities.get -> System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Entity!>!
+Koras.Dataverse.DataverseQueryResult.MoreRecords.get -> bool
+Koras.Dataverse.DataverseQueryResult.NextLink.get -> string?
+Koras.Dataverse.DataverseQueryResult.PagingCookie.get -> string?
+Koras.Dataverse.DataverseQueryResult.TotalCount.get -> long?
+Koras.Dataverse.Entity
+Koras.Dataverse.Entity.Attributes.get -> System.Collections.Generic.IDictionary<string!, object?>!
+Koras.Dataverse.Entity.Entity(string! tableName) -> void
+Koras.Dataverse.Entity.Entity(string! tableName, System.Guid id) -> void
+Koras.Dataverse.Entity.FormattedValues.get -> System.Collections.Generic.IDictionary<string!, string!>!
+Koras.Dataverse.Entity.GetValue<T>(string! attributeName) -> T?
+Koras.Dataverse.Entity.Id.get -> System.Guid
+Koras.Dataverse.Entity.Id.set -> void
+Koras.Dataverse.Entity.TableName.get -> string!
+Koras.Dataverse.Entity.this[string! attributeName].get -> object?
+Koras.Dataverse.Entity.this[string! attributeName].set -> void
+Koras.Dataverse.Entity.ToReference() -> Koras.Dataverse.EntityReference!
+Koras.Dataverse.Entity.TryGetValue<T>(string! attributeName, out T value) -> bool
+Koras.Dataverse.EntityReference
+Koras.Dataverse.EntityReference.<Clone>$() -> Koras.Dataverse.EntityReference!
+Koras.Dataverse.EntityReference.Deconstruct(out string! TableName, out System.Guid Id) -> void
+Koras.Dataverse.EntityReference.EntityReference(string! TableName, System.Guid Id) -> void
+Koras.Dataverse.EntityReference.Equals(Koras.Dataverse.EntityReference? other) -> bool
+Koras.Dataverse.EntityReference.Id.get -> System.Guid
+Koras.Dataverse.EntityReference.Id.init -> void
+Koras.Dataverse.EntityReference.Name.get -> string?
+Koras.Dataverse.EntityReference.Name.init -> void
+Koras.Dataverse.EntityReference.TableName.get -> string!
+Koras.Dataverse.EntityReference.TableName.init -> void
+Koras.Dataverse.Errors.DataverseError
+Koras.Dataverse.Errors.DataverseError.<Clone>$() -> Koras.Dataverse.Errors.DataverseError!
+Koras.Dataverse.Errors.DataverseError.Category.get -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseError.Category.init -> void
+Koras.Dataverse.Errors.DataverseError.DataverseError() -> void
+Koras.Dataverse.Errors.DataverseError.Equals(Koras.Dataverse.Errors.DataverseError? other) -> bool
+Koras.Dataverse.Errors.DataverseError.ErrorCode.get -> string?
+Koras.Dataverse.Errors.DataverseError.ErrorCode.init -> void
+Koras.Dataverse.Errors.DataverseError.HttpStatusCode.get -> int?
+Koras.Dataverse.Errors.DataverseError.HttpStatusCode.init -> void
+Koras.Dataverse.Errors.DataverseError.IsTransient.get -> bool
+Koras.Dataverse.Errors.DataverseError.IsTransient.init -> void
+Koras.Dataverse.Errors.DataverseError.Message.get -> string!
+Koras.Dataverse.Errors.DataverseError.Message.init -> void
+Koras.Dataverse.Errors.DataverseError.RequestId.get -> string?
+Koras.Dataverse.Errors.DataverseError.RequestId.init -> void
+Koras.Dataverse.Errors.DataverseError.RetryAfter.get -> System.TimeSpan?
+Koras.Dataverse.Errors.DataverseError.RetryAfter.init -> void
+Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Authentication = 1 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Authorization = 2 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Concurrency = 4 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Network = 8 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.NotFound = 3 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Server = 9 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Throttling = 5 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Timeout = 7 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Unknown = 0 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseErrorCategory.Validation = 6 -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseException
+Koras.Dataverse.Errors.DataverseException.Category.get -> Koras.Dataverse.Errors.DataverseErrorCategory
+Koras.Dataverse.Errors.DataverseException.DataverseException(Koras.Dataverse.Errors.DataverseError! error) -> void
+Koras.Dataverse.Errors.DataverseException.DataverseException(Koras.Dataverse.Errors.DataverseError! error, System.Exception? innerException) -> void
+Koras.Dataverse.Errors.DataverseException.Error.get -> Koras.Dataverse.Errors.DataverseError!
+Koras.Dataverse.Errors.DataverseException.IsTransient.get -> bool
+Koras.Dataverse.IDataverseClient
+Koras.Dataverse.IDataverseClient.AssociateAsync(Koras.Dataverse.EntityReference! primary, string! relationshipName, Koras.Dataverse.EntityReference! related, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.IDataverseClient.CreateAndReturnAsync(Koras.Dataverse.Entity! entity, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.Entity!>!
+Koras.Dataverse.IDataverseClient.CreateAsync(Koras.Dataverse.Entity! entity, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Guid>!
+Koras.Dataverse.IDataverseClient.DeleteAsync(Koras.Dataverse.EntityReference! reference, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.IDataverseClient.DeleteAsync(string! tableName, System.Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.IDataverseClient.DisassociateAsync(Koras.Dataverse.EntityReference! primary, string! relationshipName, Koras.Dataverse.EntityReference! related, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.IDataverseClient.ExecuteBatchAsync(Koras.Dataverse.Batches.BatchRequest! batch, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.Batches.BatchResponse!>!
+Koras.Dataverse.IDataverseClient.FetchAllAsync(Koras.Dataverse.FetchXml.FetchXmlQuery! query, int pageSize = 5000, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IAsyncEnumerable<Koras.Dataverse.Entity!>!
+Koras.Dataverse.IDataverseClient.FetchAsync(Koras.Dataverse.FetchXml.FetchXmlQuery! query, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.DataverseQueryResult!>!
+Koras.Dataverse.IDataverseClient.Metadata.get -> Koras.Dataverse.Metadata.IMetadataClient!
+Koras.Dataverse.IDataverseClient.QueryAllAsync(Koras.Dataverse.Queries.ODataQuery! query, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IAsyncEnumerable<Koras.Dataverse.Entity!>!
+Koras.Dataverse.IDataverseClient.QueryAsync(Koras.Dataverse.Queries.ODataQuery! query, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.DataverseQueryResult!>!
+Koras.Dataverse.IDataverseClient.RetrieveAsync(string! tableName, System.Guid id, Koras.Dataverse.ColumnSet? columns = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.Entity!>!
+Koras.Dataverse.IDataverseClient.Solutions.get -> Koras.Dataverse.Solutions.ISolutionClient!
+Koras.Dataverse.IDataverseClient.UpdateAsync(Koras.Dataverse.Entity! entity, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.IDataverseClient.UpsertAsync(Koras.Dataverse.Entity! entity, System.Collections.Generic.IReadOnlyDictionary<string!, object!>! alternateKey, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.UpsertResult!>!
+Koras.Dataverse.IDataverseClient.UpsertAsync(Koras.Dataverse.Entity! entity, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.UpsertResult!>!
+Koras.Dataverse.IDataverseClient.WhoAmIAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.WhoAmIResponse!>!
+Koras.Dataverse.IDataverseClientFactory
+Koras.Dataverse.IDataverseClientFactory.GetClient(string! name) -> Koras.Dataverse.IDataverseClient!
+Koras.Dataverse.Mapping.DataverseColumnAttribute
+Koras.Dataverse.Mapping.DataverseColumnAttribute.DataverseColumnAttribute(string! logicalName) -> void
+Koras.Dataverse.Mapping.DataverseColumnAttribute.LogicalName.get -> string!
+Koras.Dataverse.Mapping.DataverseTableAttribute
+Koras.Dataverse.Mapping.DataverseTableAttribute.DataverseTableAttribute(string! logicalName) -> void
+Koras.Dataverse.Mapping.DataverseTableAttribute.LogicalName.get -> string!
+Koras.Dataverse.Mapping.EntityMapper
+Koras.Dataverse.Metadata.ChoiceOption
+Koras.Dataverse.Metadata.ChoiceOption.<Clone>$() -> Koras.Dataverse.Metadata.ChoiceOption!
+Koras.Dataverse.Metadata.ChoiceOption.ChoiceOption(int Value, string! Label) -> void
+Koras.Dataverse.Metadata.ChoiceOption.Color.get -> string?
+Koras.Dataverse.Metadata.ChoiceOption.Color.init -> void
+Koras.Dataverse.Metadata.ChoiceOption.Deconstruct(out int Value, out string! Label) -> void
+Koras.Dataverse.Metadata.ChoiceOption.Equals(Koras.Dataverse.Metadata.ChoiceOption? other) -> bool
+Koras.Dataverse.Metadata.ChoiceOption.Label.get -> string!
+Koras.Dataverse.Metadata.ChoiceOption.Label.init -> void
+Koras.Dataverse.Metadata.ChoiceOption.Value.get -> int
+Koras.Dataverse.Metadata.ChoiceOption.Value.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata
+Koras.Dataverse.Metadata.ColumnMetadata.<Clone>$() -> Koras.Dataverse.Metadata.ColumnMetadata!
+Koras.Dataverse.Metadata.ColumnMetadata.AttributeType.get -> string?
+Koras.Dataverse.Metadata.ColumnMetadata.AttributeType.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.ColumnMetadata() -> void
+Koras.Dataverse.Metadata.ColumnMetadata.DisplayName.get -> string?
+Koras.Dataverse.Metadata.ColumnMetadata.DisplayName.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.Equals(Koras.Dataverse.Metadata.ColumnMetadata? other) -> bool
+Koras.Dataverse.Metadata.ColumnMetadata.IsCustom.get -> bool
+Koras.Dataverse.Metadata.ColumnMetadata.IsCustom.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.IsPrimaryId.get -> bool
+Koras.Dataverse.Metadata.ColumnMetadata.IsPrimaryId.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.IsPrimaryName.get -> bool
+Koras.Dataverse.Metadata.ColumnMetadata.IsPrimaryName.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.LogicalName.get -> string!
+Koras.Dataverse.Metadata.ColumnMetadata.LogicalName.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.MaxLength.get -> int?
+Koras.Dataverse.Metadata.ColumnMetadata.MaxLength.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.MetadataId.get -> System.Guid
+Koras.Dataverse.Metadata.ColumnMetadata.MetadataId.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.RequiredLevel.get -> string?
+Koras.Dataverse.Metadata.ColumnMetadata.RequiredLevel.init -> void
+Koras.Dataverse.Metadata.ColumnMetadata.SchemaName.get -> string?
+Koras.Dataverse.Metadata.ColumnMetadata.SchemaName.init -> void
+Koras.Dataverse.Metadata.IMetadataClient
+Koras.Dataverse.Metadata.IMetadataClient.GetChoicesAsync(string! tableLogicalName, string! columnLogicalName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Metadata.ChoiceOption!>!>!
+Koras.Dataverse.Metadata.IMetadataClient.GetColumnsAsync(string! tableLogicalName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Metadata.ColumnMetadata!>!>!
+Koras.Dataverse.Metadata.IMetadataClient.GetEntitySetNameAsync(string! tableLogicalName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<string!>!
+Koras.Dataverse.Metadata.IMetadataClient.GetGlobalChoicesAsync(string! choiceName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Metadata.ChoiceOption!>!>!
+Koras.Dataverse.Metadata.IMetadataClient.GetRelationshipsAsync(string! tableLogicalName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Metadata.RelationshipMetadata!>!>!
+Koras.Dataverse.Metadata.IMetadataClient.GetTableAsync(string! logicalName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.Metadata.TableMetadata!>!
+Koras.Dataverse.Metadata.IMetadataClient.GetTablesAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Collections.Generic.IReadOnlyList<Koras.Dataverse.Metadata.TableMetadata!>!>!
+Koras.Dataverse.Metadata.RelationshipKind
+Koras.Dataverse.Metadata.RelationshipKind.ManyToMany = 2 -> Koras.Dataverse.Metadata.RelationshipKind
+Koras.Dataverse.Metadata.RelationshipKind.ManyToOne = 1 -> Koras.Dataverse.Metadata.RelationshipKind
+Koras.Dataverse.Metadata.RelationshipKind.OneToMany = 0 -> Koras.Dataverse.Metadata.RelationshipKind
+Koras.Dataverse.Metadata.RelationshipMetadata
+Koras.Dataverse.Metadata.RelationshipMetadata.<Clone>$() -> Koras.Dataverse.Metadata.RelationshipMetadata!
+Koras.Dataverse.Metadata.RelationshipMetadata.Equals(Koras.Dataverse.Metadata.RelationshipMetadata? other) -> bool
+Koras.Dataverse.Metadata.RelationshipMetadata.IntersectTable.get -> string?
+Koras.Dataverse.Metadata.RelationshipMetadata.IntersectTable.init -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.Kind.get -> Koras.Dataverse.Metadata.RelationshipKind
+Koras.Dataverse.Metadata.RelationshipMetadata.Kind.init -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.MetadataId.get -> System.Guid
+Koras.Dataverse.Metadata.RelationshipMetadata.MetadataId.init -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.ReferencedTable.get -> string?
+Koras.Dataverse.Metadata.RelationshipMetadata.ReferencedTable.init -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.ReferencingColumn.get -> string?
+Koras.Dataverse.Metadata.RelationshipMetadata.ReferencingColumn.init -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.ReferencingTable.get -> string?
+Koras.Dataverse.Metadata.RelationshipMetadata.ReferencingTable.init -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.RelationshipMetadata() -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.SchemaName.get -> string!
+Koras.Dataverse.Metadata.RelationshipMetadata.SchemaName.init -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.Table1.get -> string?
+Koras.Dataverse.Metadata.RelationshipMetadata.Table1.init -> void
+Koras.Dataverse.Metadata.RelationshipMetadata.Table2.get -> string?
+Koras.Dataverse.Metadata.RelationshipMetadata.Table2.init -> void
+Koras.Dataverse.Metadata.TableMetadata
+Koras.Dataverse.Metadata.TableMetadata.<Clone>$() -> Koras.Dataverse.Metadata.TableMetadata!
+Koras.Dataverse.Metadata.TableMetadata.DisplayName.get -> string?
+Koras.Dataverse.Metadata.TableMetadata.DisplayName.init -> void
+Koras.Dataverse.Metadata.TableMetadata.EntitySetName.get -> string?
+Koras.Dataverse.Metadata.TableMetadata.EntitySetName.init -> void
+Koras.Dataverse.Metadata.TableMetadata.Equals(Koras.Dataverse.Metadata.TableMetadata? other) -> bool
+Koras.Dataverse.Metadata.TableMetadata.IsCustom.get -> bool
+Koras.Dataverse.Metadata.TableMetadata.IsCustom.init -> void
+Koras.Dataverse.Metadata.TableMetadata.LogicalName.get -> string!
+Koras.Dataverse.Metadata.TableMetadata.LogicalName.init -> void
+Koras.Dataverse.Metadata.TableMetadata.MetadataId.get -> System.Guid
+Koras.Dataverse.Metadata.TableMetadata.MetadataId.init -> void
+Koras.Dataverse.Metadata.TableMetadata.PrimaryIdAttribute.get -> string?
+Koras.Dataverse.Metadata.TableMetadata.PrimaryIdAttribute.init -> void
+Koras.Dataverse.Metadata.TableMetadata.PrimaryNameAttribute.get -> string?
+Koras.Dataverse.Metadata.TableMetadata.PrimaryNameAttribute.init -> void
+Koras.Dataverse.Metadata.TableMetadata.SchemaName.get -> string?
+Koras.Dataverse.Metadata.TableMetadata.SchemaName.init -> void
+Koras.Dataverse.Metadata.TableMetadata.TableMetadata() -> void
+Koras.Dataverse.Queries.ODataFilterBuilder
+Koras.Dataverse.Queries.ODataFilterBuilder.And(System.Action<Koras.Dataverse.Queries.ODataFilterBuilder!>! configure) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Contains(string! column, string! text) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.EndsWith(string! column, string! text) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Eq(string! column, object? value) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Ge(string! column, object! value) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Gt(string! column, object! value) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.In(string! column, params object![]! values) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.IsNotNull(string! column) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.IsNull(string! column) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Le(string! column, object! value) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Lt(string! column, object! value) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Ne(string! column, object? value) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Not(System.Action<Koras.Dataverse.Queries.ODataFilterBuilder!>! configure) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Or(System.Action<Koras.Dataverse.Queries.ODataFilterBuilder!>! configure) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.Raw(string! filterFragment) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataFilterBuilder.StartsWith(string! column, string! text) -> Koras.Dataverse.Queries.ODataFilterBuilder!
+Koras.Dataverse.Queries.ODataQuery
+Koras.Dataverse.Queries.ODataQuery.Expand(string! navigationProperty, params string![]! columns) -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Queries.ODataQuery.IncludeCount() -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Queries.ODataQuery.OrderBy(string! column) -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Queries.ODataQuery.OrderByDescending(string! column) -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Queries.ODataQuery.PageSize(int size) -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Queries.ODataQuery.PreferredPageSize.get -> int?
+Koras.Dataverse.Queries.ODataQuery.Select(params string![]! columns) -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Queries.ODataQuery.TableName.get -> string!
+Koras.Dataverse.Queries.ODataQuery.Top(int count) -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Queries.ODataQuery.ToQueryString() -> string!
+Koras.Dataverse.Queries.ODataQuery.Where(System.Action<Koras.Dataverse.Queries.ODataFilterBuilder!>! configure) -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Queries.ODataQuery.WhereRaw(string! filter) -> Koras.Dataverse.Queries.ODataQuery!
+Koras.Dataverse.Solutions.ISolutionClient
+Koras.Dataverse.Solutions.ISolutionClient.ExportAsync(string! solutionUniqueName, bool managed = false, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<byte[]!>!
+Koras.Dataverse.Solutions.ISolutionClient.FindAsync(string! uniqueName, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.Solutions.SolutionInfo?>!
+Koras.Dataverse.Solutions.ISolutionClient.ImportAsync(System.ReadOnlyMemory<byte> solutionZip, Koras.Dataverse.Solutions.SolutionImportOptions? options = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.Solutions.ISolutionClient.PublishAllAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.Solutions.SolutionImportOptions
+Koras.Dataverse.Solutions.SolutionImportOptions.ConvertToManaged.get -> bool
+Koras.Dataverse.Solutions.SolutionImportOptions.ConvertToManaged.set -> void
+Koras.Dataverse.Solutions.SolutionImportOptions.ImportJobId.get -> System.Guid
+Koras.Dataverse.Solutions.SolutionImportOptions.ImportJobId.set -> void
+Koras.Dataverse.Solutions.SolutionImportOptions.OverwriteUnmanagedCustomizations.get -> bool
+Koras.Dataverse.Solutions.SolutionImportOptions.OverwriteUnmanagedCustomizations.set -> void
+Koras.Dataverse.Solutions.SolutionImportOptions.PublishWorkflows.get -> bool
+Koras.Dataverse.Solutions.SolutionImportOptions.PublishWorkflows.set -> void
+Koras.Dataverse.Solutions.SolutionImportOptions.SolutionImportOptions() -> void
+Koras.Dataverse.Solutions.SolutionInfo
+Koras.Dataverse.Solutions.SolutionInfo.<Clone>$() -> Koras.Dataverse.Solutions.SolutionInfo!
+Koras.Dataverse.Solutions.SolutionInfo.Equals(Koras.Dataverse.Solutions.SolutionInfo? other) -> bool
+Koras.Dataverse.Solutions.SolutionInfo.FriendlyName.get -> string?
+Koras.Dataverse.Solutions.SolutionInfo.FriendlyName.init -> void
+Koras.Dataverse.Solutions.SolutionInfo.InstalledOn.get -> System.DateTimeOffset?
+Koras.Dataverse.Solutions.SolutionInfo.InstalledOn.init -> void
+Koras.Dataverse.Solutions.SolutionInfo.IsManaged.get -> bool
+Koras.Dataverse.Solutions.SolutionInfo.IsManaged.init -> void
+Koras.Dataverse.Solutions.SolutionInfo.SolutionId.get -> System.Guid
+Koras.Dataverse.Solutions.SolutionInfo.SolutionId.init -> void
+Koras.Dataverse.Solutions.SolutionInfo.SolutionInfo() -> void
+Koras.Dataverse.Solutions.SolutionInfo.UniqueName.get -> string!
+Koras.Dataverse.Solutions.SolutionInfo.UniqueName.init -> void
+Koras.Dataverse.Solutions.SolutionInfo.Version.get -> string?
+Koras.Dataverse.Solutions.SolutionInfo.Version.init -> void
+Koras.Dataverse.UpsertResult
+Koras.Dataverse.UpsertResult.<Clone>$() -> Koras.Dataverse.UpsertResult!
+Koras.Dataverse.UpsertResult.Created.get -> bool
+Koras.Dataverse.UpsertResult.Created.init -> void
+Koras.Dataverse.UpsertResult.Deconstruct(out System.Guid Id, out bool Created) -> void
+Koras.Dataverse.UpsertResult.Equals(Koras.Dataverse.UpsertResult? other) -> bool
+Koras.Dataverse.UpsertResult.Id.get -> System.Guid
+Koras.Dataverse.UpsertResult.Id.init -> void
+Koras.Dataverse.UpsertResult.UpsertResult(System.Guid Id, bool Created) -> void
+Koras.Dataverse.WhoAmIResponse
+Koras.Dataverse.WhoAmIResponse.<Clone>$() -> Koras.Dataverse.WhoAmIResponse!
+Koras.Dataverse.WhoAmIResponse.BusinessUnitId.get -> System.Guid
+Koras.Dataverse.WhoAmIResponse.BusinessUnitId.init -> void
+Koras.Dataverse.WhoAmIResponse.Deconstruct(out System.Guid UserId, out System.Guid BusinessUnitId, out System.Guid OrganizationId) -> void
+Koras.Dataverse.WhoAmIResponse.Equals(Koras.Dataverse.WhoAmIResponse? other) -> bool
+Koras.Dataverse.WhoAmIResponse.OrganizationId.get -> System.Guid
+Koras.Dataverse.WhoAmIResponse.OrganizationId.init -> void
+Koras.Dataverse.WhoAmIResponse.UserId.get -> System.Guid
+Koras.Dataverse.WhoAmIResponse.UserId.init -> void
+Koras.Dataverse.WhoAmIResponse.WhoAmIResponse(System.Guid UserId, System.Guid BusinessUnitId, System.Guid OrganizationId) -> void
+override Koras.Dataverse.EntityReference.Equals(object? obj) -> bool
+override Koras.Dataverse.EntityReference.GetHashCode() -> int
+override Koras.Dataverse.EntityReference.ToString() -> string!
+override Koras.Dataverse.Errors.DataverseError.Equals(object? obj) -> bool
+override Koras.Dataverse.Errors.DataverseError.GetHashCode() -> int
+override Koras.Dataverse.Errors.DataverseError.ToString() -> string!
+override Koras.Dataverse.Metadata.ChoiceOption.Equals(object? obj) -> bool
+override Koras.Dataverse.Metadata.ChoiceOption.GetHashCode() -> int
+override Koras.Dataverse.Metadata.ChoiceOption.ToString() -> string!
+override Koras.Dataverse.Metadata.ColumnMetadata.Equals(object? obj) -> bool
+override Koras.Dataverse.Metadata.ColumnMetadata.GetHashCode() -> int
+override Koras.Dataverse.Metadata.ColumnMetadata.ToString() -> string!
+override Koras.Dataverse.Metadata.RelationshipMetadata.Equals(object? obj) -> bool
+override Koras.Dataverse.Metadata.RelationshipMetadata.GetHashCode() -> int
+override Koras.Dataverse.Metadata.RelationshipMetadata.ToString() -> string!
+override Koras.Dataverse.Metadata.TableMetadata.Equals(object? obj) -> bool
+override Koras.Dataverse.Metadata.TableMetadata.GetHashCode() -> int
+override Koras.Dataverse.Metadata.TableMetadata.ToString() -> string!
+override Koras.Dataverse.Queries.ODataQuery.ToString() -> string!
+override Koras.Dataverse.Solutions.SolutionInfo.Equals(object? obj) -> bool
+override Koras.Dataverse.Solutions.SolutionInfo.GetHashCode() -> int
+override Koras.Dataverse.Solutions.SolutionInfo.ToString() -> string!
+override Koras.Dataverse.UpsertResult.Equals(object? obj) -> bool
+override Koras.Dataverse.UpsertResult.GetHashCode() -> int
+override Koras.Dataverse.UpsertResult.ToString() -> string!
+override Koras.Dataverse.WhoAmIResponse.Equals(object? obj) -> bool
+override Koras.Dataverse.WhoAmIResponse.GetHashCode() -> int
+override Koras.Dataverse.WhoAmIResponse.ToString() -> string!
+static Koras.Dataverse.ColumnSet.All.get -> Koras.Dataverse.ColumnSet!
+static Koras.Dataverse.ColumnSet.Of(params string![]! columns) -> Koras.Dataverse.ColumnSet!
+static Koras.Dataverse.EntityReference.operator !=(Koras.Dataverse.EntityReference? left, Koras.Dataverse.EntityReference? right) -> bool
+static Koras.Dataverse.EntityReference.operator ==(Koras.Dataverse.EntityReference? left, Koras.Dataverse.EntityReference? right) -> bool
+static Koras.Dataverse.Errors.DataverseError.operator !=(Koras.Dataverse.Errors.DataverseError? left, Koras.Dataverse.Errors.DataverseError? right) -> bool
+static Koras.Dataverse.Errors.DataverseError.operator ==(Koras.Dataverse.Errors.DataverseError? left, Koras.Dataverse.Errors.DataverseError? right) -> bool
+static Koras.Dataverse.Mapping.EntityMapper.TableNameOf<T>() -> string!
+static Koras.Dataverse.Mapping.EntityMapper.ToEntity<T>(T value) -> Koras.Dataverse.Entity!
+static Koras.Dataverse.Mapping.EntityMapper.ToObject<T>(this Koras.Dataverse.Entity! entity) -> T
+static Koras.Dataverse.Metadata.ChoiceOption.operator !=(Koras.Dataverse.Metadata.ChoiceOption? left, Koras.Dataverse.Metadata.ChoiceOption? right) -> bool
+static Koras.Dataverse.Metadata.ChoiceOption.operator ==(Koras.Dataverse.Metadata.ChoiceOption? left, Koras.Dataverse.Metadata.ChoiceOption? right) -> bool
+static Koras.Dataverse.Metadata.ColumnMetadata.operator !=(Koras.Dataverse.Metadata.ColumnMetadata? left, Koras.Dataverse.Metadata.ColumnMetadata? right) -> bool
+static Koras.Dataverse.Metadata.ColumnMetadata.operator ==(Koras.Dataverse.Metadata.ColumnMetadata? left, Koras.Dataverse.Metadata.ColumnMetadata? right) -> bool
+static Koras.Dataverse.Metadata.RelationshipMetadata.operator !=(Koras.Dataverse.Metadata.RelationshipMetadata? left, Koras.Dataverse.Metadata.RelationshipMetadata? right) -> bool
+static Koras.Dataverse.Metadata.RelationshipMetadata.operator ==(Koras.Dataverse.Metadata.RelationshipMetadata? left, Koras.Dataverse.Metadata.RelationshipMetadata? right) -> bool
+static Koras.Dataverse.Metadata.TableMetadata.operator !=(Koras.Dataverse.Metadata.TableMetadata? left, Koras.Dataverse.Metadata.TableMetadata? right) -> bool
+static Koras.Dataverse.Metadata.TableMetadata.operator ==(Koras.Dataverse.Metadata.TableMetadata? left, Koras.Dataverse.Metadata.TableMetadata? right) -> bool
+static Koras.Dataverse.Queries.ODataFilterBuilder.Literal(object? value) -> string!
+static Koras.Dataverse.Queries.ODataQuery.For(string! tableName) -> Koras.Dataverse.Queries.ODataQuery!
+static Koras.Dataverse.Solutions.SolutionInfo.operator !=(Koras.Dataverse.Solutions.SolutionInfo? left, Koras.Dataverse.Solutions.SolutionInfo? right) -> bool
+static Koras.Dataverse.Solutions.SolutionInfo.operator ==(Koras.Dataverse.Solutions.SolutionInfo? left, Koras.Dataverse.Solutions.SolutionInfo? right) -> bool
+static Koras.Dataverse.UpsertResult.operator !=(Koras.Dataverse.UpsertResult? left, Koras.Dataverse.UpsertResult? right) -> bool
+static Koras.Dataverse.UpsertResult.operator ==(Koras.Dataverse.UpsertResult? left, Koras.Dataverse.UpsertResult? right) -> bool
+static Koras.Dataverse.WhoAmIResponse.operator !=(Koras.Dataverse.WhoAmIResponse? left, Koras.Dataverse.WhoAmIResponse? right) -> bool
+static Koras.Dataverse.WhoAmIResponse.operator ==(Koras.Dataverse.WhoAmIResponse? left, Koras.Dataverse.WhoAmIResponse? right) -> bool

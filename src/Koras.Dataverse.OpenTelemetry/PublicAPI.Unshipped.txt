@@ -1,0 +1,4 @@
+﻿#nullable enable
+Koras.Dataverse.OpenTelemetry.DataverseOpenTelemetryExtensions
+static Koras.Dataverse.OpenTelemetry.DataverseOpenTelemetryExtensions.AddKorasDataverseInstrumentation(this OpenTelemetry.Metrics.MeterProviderBuilder! builder) -> OpenTelemetry.Metrics.MeterProviderBuilder!
+static Koras.Dataverse.OpenTelemetry.DataverseOpenTelemetryExtensions.AddKorasDataverseInstrumentation(this OpenTelemetry.Trace.TracerProviderBuilder! builder) -> OpenTelemetry.Trace.TracerProviderBuilder!

@@ -1,0 +1,65 @@
+﻿#nullable enable
+Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.BeginsWith = 15 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.EndsWith = 16 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.Equal = 0 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.GreaterEqual = 3 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.GreaterThan = 2 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.In = 8 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.LessEqual = 5 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.LessThan = 4 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.Like = 6 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.NotEqual = 1 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.NotIn = 9 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.NotLike = 7 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.NotNull = 11 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.Null = 10 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.On = 12 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.OnOrAfter = 13 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchConditionOperator.OnOrBefore = 14 -> Koras.Dataverse.FetchXml.FetchConditionOperator
+Koras.Dataverse.FetchXml.FetchFilterBuilder
+Koras.Dataverse.FetchXml.FetchFilterBuilder.And(System.Action<Koras.Dataverse.FetchXml.FetchFilterBuilder!>! configure) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.BeginsWith(string! column, string! text) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Condition(string! column, Koras.Dataverse.FetchXml.FetchConditionOperator conditionOperator, params object![]! values) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.EndsWith(string! column, string! text) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Eq(string! column, object! value) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Ge(string! column, object! value) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Gt(string! column, object! value) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.In(string! column, params object![]! values) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.IsNotNull(string! column) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.IsNull(string! column) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Le(string! column, object! value) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Like(string! column, string! pattern) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Lt(string! column, object! value) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Ne(string! column, object! value) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.NotIn(string! column, params object![]! values) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.NotLike(string! column, string! pattern) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchFilterBuilder.Or(System.Action<Koras.Dataverse.FetchXml.FetchFilterBuilder!>! configure) -> Koras.Dataverse.FetchXml.FetchFilterBuilder!
+Koras.Dataverse.FetchXml.FetchLinkEntityBuilder
+Koras.Dataverse.FetchXml.FetchLinkEntityBuilder.Alias(string! alias) -> Koras.Dataverse.FetchXml.FetchLinkEntityBuilder!
+Koras.Dataverse.FetchXml.FetchLinkEntityBuilder.AllAttributes() -> Koras.Dataverse.FetchXml.FetchLinkEntityBuilder!
+Koras.Dataverse.FetchXml.FetchLinkEntityBuilder.Attributes(params string![]! columns) -> Koras.Dataverse.FetchXml.FetchLinkEntityBuilder!
+Koras.Dataverse.FetchXml.FetchLinkEntityBuilder.Link(string! tableName, string! from, string! to, System.Action<Koras.Dataverse.FetchXml.FetchLinkEntityBuilder!>? configure = null, Koras.Dataverse.FetchXml.FetchLinkType linkType = Koras.Dataverse.FetchXml.FetchLinkType.Inner) -> Koras.Dataverse.FetchXml.FetchLinkEntityBuilder!
+Koras.Dataverse.FetchXml.FetchLinkEntityBuilder.Where(System.Action<Koras.Dataverse.FetchXml.FetchFilterBuilder!>! configure) -> Koras.Dataverse.FetchXml.FetchLinkEntityBuilder!
+Koras.Dataverse.FetchXml.FetchLinkType
+Koras.Dataverse.FetchXml.FetchLinkType.Inner = 0 -> Koras.Dataverse.FetchXml.FetchLinkType
+Koras.Dataverse.FetchXml.FetchLinkType.Outer = 1 -> Koras.Dataverse.FetchXml.FetchLinkType
+Koras.Dataverse.FetchXml.FetchXml
+Koras.Dataverse.FetchXml.FetchXmlBuilder
+Koras.Dataverse.FetchXml.FetchXmlBuilder.AllAttributes() -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.Attributes(params string![]! columns) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.Build() -> Koras.Dataverse.FetchXml.FetchXmlQuery!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.Distinct(bool distinct = true) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.Link(string! tableName, string! from, string! to, System.Action<Koras.Dataverse.FetchXml.FetchLinkEntityBuilder!>? configure = null, Koras.Dataverse.FetchXml.FetchLinkType linkType = Koras.Dataverse.FetchXml.FetchLinkType.Inner) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.OrderBy(string! column) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.OrderByDescending(string! column) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.Page(int page, int pageSize, string? pagingCookie = null) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.Top(int count) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlBuilder.Where(System.Action<Koras.Dataverse.FetchXml.FetchFilterBuilder!>! configure) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+Koras.Dataverse.FetchXml.FetchXmlQuery
+Koras.Dataverse.FetchXml.FetchXmlQuery.TableName.get -> string!
+Koras.Dataverse.FetchXml.FetchXmlQuery.WithPage(int page, int pageSize, string? pagingCookie = null) -> Koras.Dataverse.FetchXml.FetchXmlQuery!
+Koras.Dataverse.FetchXml.FetchXmlQuery.Xml.get -> string!
+override Koras.Dataverse.FetchXml.FetchXmlQuery.ToString() -> string!
+static Koras.Dataverse.FetchXml.FetchXml.For(string! tableName) -> Koras.Dataverse.FetchXml.FetchXmlBuilder!
+static Koras.Dataverse.FetchXml.FetchXmlQuery.FromXml(string! xml) -> Koras.Dataverse.FetchXml.FetchXmlQuery!

@@ -1,0 +1,91 @@
+﻿#nullable enable
+const Koras.Dataverse.Diagnostics.DataverseDiagnostics.ActivitySourceName = "Koras.Dataverse" -> string!
+const Koras.Dataverse.Diagnostics.DataverseDiagnostics.MeterName = "Koras.Dataverse" -> string!
+const Microsoft.Extensions.DependencyInjection.DataverseServiceCollectionExtensions.DefaultClientName = "Default" -> string!
+Koras.Dataverse.Authentication.TokenCredentialTokenProvider
+Koras.Dataverse.Authentication.TokenCredentialTokenProvider.Dispose() -> void
+Koras.Dataverse.Authentication.TokenCredentialTokenProvider.GetAccessTokenAsync(System.Uri! environmentUrl, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.ValueTask<string!>
+Koras.Dataverse.Authentication.TokenCredentialTokenProvider.TokenCredentialTokenProvider(Azure.Core.TokenCredential! credential, System.TimeProvider? timeProvider = null) -> void
+Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationKind.Certificate = 2 -> Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationKind.ClientSecret = 1 -> Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationKind.Default = 0 -> Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationKind.Interactive = 4 -> Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationKind.ManagedIdentity = 3 -> Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationKind.TokenCredential = 5 -> Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationKind.TokenProvider = 6 -> Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationOptions
+Koras.Dataverse.DataverseAuthenticationOptions.Certificate.get -> System.Security.Cryptography.X509Certificates.X509Certificate2?
+Koras.Dataverse.DataverseAuthenticationOptions.ClientId.get -> string?
+Koras.Dataverse.DataverseAuthenticationOptions.ClientSecret.get -> string?
+Koras.Dataverse.DataverseAuthenticationOptions.Credential.get -> Azure.Core.TokenCredential?
+Koras.Dataverse.DataverseAuthenticationOptions.DataverseAuthenticationOptions() -> void
+Koras.Dataverse.DataverseAuthenticationOptions.Kind.get -> Koras.Dataverse.DataverseAuthenticationKind
+Koras.Dataverse.DataverseAuthenticationOptions.ManagedIdentityClientId.get -> string?
+Koras.Dataverse.DataverseAuthenticationOptions.TenantId.get -> string?
+Koras.Dataverse.DataverseAuthenticationOptions.TokenProvider.get -> Koras.Dataverse.Authentication.IDataverseTokenProvider?
+Koras.Dataverse.DataverseAuthenticationOptions.UseCertificate(string! tenantId, string! clientId, System.Security.Cryptography.X509Certificates.X509Certificate2! certificate) -> Koras.Dataverse.DataverseAuthenticationOptions!
+Koras.Dataverse.DataverseAuthenticationOptions.UseClientSecret(string! tenantId, string! clientId, string! clientSecret) -> Koras.Dataverse.DataverseAuthenticationOptions!
+Koras.Dataverse.DataverseAuthenticationOptions.UseDefault() -> Koras.Dataverse.DataverseAuthenticationOptions!
+Koras.Dataverse.DataverseAuthenticationOptions.UseInteractive(string? tenantId = null, string? clientId = null) -> Koras.Dataverse.DataverseAuthenticationOptions!
+Koras.Dataverse.DataverseAuthenticationOptions.UseManagedIdentity(string? clientId = null) -> Koras.Dataverse.DataverseAuthenticationOptions!
+Koras.Dataverse.DataverseAuthenticationOptions.UseTokenCredential(Azure.Core.TokenCredential! credential) -> Koras.Dataverse.DataverseAuthenticationOptions!
+Koras.Dataverse.DataverseAuthenticationOptions.UseTokenProvider(Koras.Dataverse.Authentication.IDataverseTokenProvider! provider) -> Koras.Dataverse.DataverseAuthenticationOptions!
+Koras.Dataverse.DataverseClient
+Koras.Dataverse.DataverseClient.AssociateAsync(Koras.Dataverse.EntityReference! primary, string! relationshipName, Koras.Dataverse.EntityReference! related, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.DataverseClient.CreateAndReturnAsync(Koras.Dataverse.Entity! entity, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.Entity!>!
+Koras.Dataverse.DataverseClient.CreateAsync(Koras.Dataverse.Entity! entity, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<System.Guid>!
+Koras.Dataverse.DataverseClient.DataverseClient(System.Net.Http.HttpClient! httpClient, Koras.Dataverse.DataverseClientOptions! options, Microsoft.Extensions.Logging.ILoggerFactory? loggerFactory = null, System.TimeProvider? timeProvider = null) -> void
+Koras.Dataverse.DataverseClient.DeleteAsync(Koras.Dataverse.EntityReference! reference, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.DataverseClient.DeleteAsync(string! tableName, System.Guid id, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.DataverseClient.DisassociateAsync(Koras.Dataverse.EntityReference! primary, string! relationshipName, Koras.Dataverse.EntityReference! related, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.DataverseClient.Dispose() -> void
+Koras.Dataverse.DataverseClient.ExecuteBatchAsync(Koras.Dataverse.Batches.BatchRequest! batch, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.Batches.BatchResponse!>!
+Koras.Dataverse.DataverseClient.FetchAllAsync(Koras.Dataverse.FetchXml.FetchXmlQuery! query, int pageSize = 5000, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IAsyncEnumerable<Koras.Dataverse.Entity!>!
+Koras.Dataverse.DataverseClient.FetchAsync(Koras.Dataverse.FetchXml.FetchXmlQuery! query, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.DataverseQueryResult!>!
+Koras.Dataverse.DataverseClient.Metadata.get -> Koras.Dataverse.Metadata.IMetadataClient!
+Koras.Dataverse.DataverseClient.QueryAllAsync(Koras.Dataverse.Queries.ODataQuery! query, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Collections.Generic.IAsyncEnumerable<Koras.Dataverse.Entity!>!
+Koras.Dataverse.DataverseClient.QueryAsync(Koras.Dataverse.Queries.ODataQuery! query, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.DataverseQueryResult!>!
+Koras.Dataverse.DataverseClient.RetrieveAsync(string! tableName, System.Guid id, Koras.Dataverse.ColumnSet? columns = null, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.Entity!>!
+Koras.Dataverse.DataverseClient.Solutions.get -> Koras.Dataverse.Solutions.ISolutionClient!
+Koras.Dataverse.DataverseClient.UpdateAsync(Koras.Dataverse.Entity! entity, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task!
+Koras.Dataverse.DataverseClient.UpsertAsync(Koras.Dataverse.Entity! entity, System.Collections.Generic.IReadOnlyDictionary<string!, object!>! alternateKey, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.UpsertResult!>!
+Koras.Dataverse.DataverseClient.UpsertAsync(Koras.Dataverse.Entity! entity, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.UpsertResult!>!
+Koras.Dataverse.DataverseClient.WhoAmIAsync(System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Koras.Dataverse.WhoAmIResponse!>!
+Koras.Dataverse.DataverseClientOptions
+Koras.Dataverse.DataverseClientOptions.ApiVersion.get -> string!
+Koras.Dataverse.DataverseClientOptions.ApiVersion.set -> void
+Koras.Dataverse.DataverseClientOptions.Authentication.get -> Koras.Dataverse.DataverseAuthenticationOptions!
+Koras.Dataverse.DataverseClientOptions.DataverseClientOptions() -> void
+Koras.Dataverse.DataverseClientOptions.EntitySetNameOverrides.get -> System.Collections.Generic.IDictionary<string!, string!>!
+Koras.Dataverse.DataverseClientOptions.EnvironmentUrl.get -> System.Uri?
+Koras.Dataverse.DataverseClientOptions.EnvironmentUrl.set -> void
+Koras.Dataverse.DataverseClientOptions.IncludeAnnotations.get -> bool
+Koras.Dataverse.DataverseClientOptions.IncludeAnnotations.set -> void
+Koras.Dataverse.DataverseClientOptions.Retry.get -> Koras.Dataverse.DataverseRetryOptions!
+Koras.Dataverse.DataverseClientOptions.Timeout.get -> System.TimeSpan
+Koras.Dataverse.DataverseClientOptions.Timeout.set -> void
+Koras.Dataverse.DataverseRetryOptions
+Koras.Dataverse.DataverseRetryOptions.BaseDelay.get -> System.TimeSpan
+Koras.Dataverse.DataverseRetryOptions.BaseDelay.set -> void
+Koras.Dataverse.DataverseRetryOptions.DataverseRetryOptions() -> void
+Koras.Dataverse.DataverseRetryOptions.MaxDelay.get -> System.TimeSpan
+Koras.Dataverse.DataverseRetryOptions.MaxDelay.set -> void
+Koras.Dataverse.DataverseRetryOptions.MaxRetries.get -> int
+Koras.Dataverse.DataverseRetryOptions.MaxRetries.set -> void
+Koras.Dataverse.DataverseRetryOptions.RespectRetryAfter.get -> bool
+Koras.Dataverse.DataverseRetryOptions.RespectRetryAfter.set -> void
+Koras.Dataverse.DependencyInjection.DataverseBuilder
+Koras.Dataverse.DependencyInjection.DataverseBuilder.AddHttpMessageHandler(System.Func<System.IServiceProvider!, System.Net.Http.DelegatingHandler!>! configureHandler) -> Koras.Dataverse.DependencyInjection.DataverseBuilder!
+Koras.Dataverse.DependencyInjection.DataverseBuilder.HttpClientBuilder.get -> Microsoft.Extensions.DependencyInjection.IHttpClientBuilder!
+Koras.Dataverse.DependencyInjection.DataverseBuilder.Name.get -> string!
+Koras.Dataverse.DependencyInjection.DataverseBuilder.Services.get -> Microsoft.Extensions.DependencyInjection.IServiceCollection!
+Koras.Dataverse.Diagnostics.DataverseDiagnostics
+Koras.Dataverse.HealthChecks.DataverseHealthCheck
+Koras.Dataverse.HealthChecks.DataverseHealthCheck.CheckHealthAsync(Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckContext! context, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken)) -> System.Threading.Tasks.Task<Microsoft.Extensions.Diagnostics.HealthChecks.HealthCheckResult>!
+Koras.Dataverse.HealthChecks.DataverseHealthCheck.DataverseHealthCheck(Koras.Dataverse.IDataverseClient! client) -> void
+Microsoft.Extensions.DependencyInjection.DataverseServiceCollectionExtensions
+static Koras.Dataverse.DataverseClient.Create(Koras.Dataverse.DataverseClientOptions! options, Microsoft.Extensions.Logging.ILoggerFactory? loggerFactory = null, System.TimeProvider? timeProvider = null) -> Koras.Dataverse.DataverseClient!
+static Microsoft.Extensions.DependencyInjection.DataverseServiceCollectionExtensions.AddDataverse(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, string! name, System.Action<Koras.Dataverse.DataverseClientOptions!>! configure) -> Koras.Dataverse.DependencyInjection.DataverseBuilder!
+static Microsoft.Extensions.DependencyInjection.DataverseServiceCollectionExtensions.AddDataverse(this Microsoft.Extensions.DependencyInjection.IServiceCollection! services, System.Action<Koras.Dataverse.DataverseClientOptions!>! configure) -> Koras.Dataverse.DependencyInjection.DataverseBuilder!
+static Microsoft.Extensions.DependencyInjection.DataverseServiceCollectionExtensions.AddDataverseHealthCheck(this Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder! builder, string! name = "dataverse", Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus failureStatus = Microsoft.Extensions.Diagnostics.HealthChecks.HealthStatus.Unhealthy, System.Collections.Generic.IEnumerable<string!>? tags = null) -> Microsoft.Extensions.DependencyInjection.IHealthChecksBuilder!
