@@ -21,7 +21,7 @@
   <!-- Version is overridden by the release workflow via -p:Version=x.y.z from the git tag. -->
   <PropertyGroup>
     <VersionPrefix>0.1.0</VersionPrefix>
-    <VersionSuffix>preview.1</VersionSuffix>
+    <VersionSuffix>preview.2</VersionSuffix>
   </PropertyGroup>
 
 </Project>

@@ -6,6 +6,12 @@ All notable changes to the Koras Dataverse SDK are documented here. The format f
 
 ## [Unreleased]
 
+## [0.1.0-preview.2] — 2026-07-16
+
+### Changed
+
+- New package icon (all packages).
+
 ## [0.1.0-preview.1] — 2026-07-16
 
 First public preview.
