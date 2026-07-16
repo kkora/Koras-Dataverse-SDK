@@ -1,0 +1,53 @@
+name: Nightly live integration
+
+# Runs the live Dataverse integration suite nightly against the environment configured in
+# the `dataverse-live` environment secrets. Without those secrets the tests skip cleanly
+# (LiveFact), so this workflow stays green until a test environment is provisioned.
+# See docs/testing/integration-testing.md.
+
+on:
+  schedule:
+    - cron: "30 3 * * *" # 03:30 UTC nightly
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    environment: dataverse-live
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - name: Restore and build
+        run: |
+          dotnet restore Koras.Dataverse.slnx
+          dotnet build Koras.Dataverse.slnx --configuration Release --no-restore
+
+      - name: Run live integration tests
+        env:
+          KORAS_DATAVERSE_URL: ${{ secrets.KORAS_DATAVERSE_URL }}
+          KORAS_DATAVERSE_TENANT_ID: ${{ secrets.KORAS_DATAVERSE_TENANT_ID }}
+          KORAS_DATAVERSE_CLIENT_ID: ${{ secrets.KORAS_DATAVERSE_CLIENT_ID }}
+          KORAS_DATAVERSE_CLIENT_SECRET: ${{ secrets.KORAS_DATAVERSE_CLIENT_SECRET }}
+        run: >
+          dotnet test tests/Koras.Dataverse.IntegrationTests --configuration Release --no-build
+          --logger "trx;LogFilePrefix=live"
+          --results-directory artifacts/live-results
+
+      - name: Upload live test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-test-results
+          path: artifacts/live-results/
+          retention-days: 30

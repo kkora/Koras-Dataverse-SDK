@@ -35,9 +35,27 @@ jobs:
       - name: Test with coverage
         run: >
           dotnet test Koras.Dataverse.slnx --configuration Release --no-build
-          --collect "Code Coverage;Format=cobertura"
+          --collect "XPlat Code Coverage"
           --results-directory artifacts/test-results
           --logger "trx;LogFilePrefix=results"
+
+      # Coverage gate per docs/planning/master-plan.md §6: ≥ 80 % line / ≥ 70 % branch
+      # on Koras.Dataverse + Koras.Dataverse.FetchXml (ratchet — do not lower).
+      - name: Coverage gate (≥80% line / ≥70% branch)
+        run: |
+          dotnet tool install -g dotnet-reportgenerator-globaltool
+          reportgenerator \
+            -reports:"artifacts/test-results/**/coverage.cobertura.xml" \
+            -targetdir:artifacts/test-results/coverage-report \
+            "-reporttypes:JsonSummary;TextSummary;MarkdownSummaryGithub" \
+            "-assemblyfilters:+Koras.Dataverse;+Koras.Dataverse.FetchXml"
+          cat artifacts/test-results/coverage-report/Summary.txt
+          cat artifacts/test-results/coverage-report/SummaryGithub.md >> "$GITHUB_STEP_SUMMARY" || true
+          LINE=$(jq -r '.summary.linecoverage' artifacts/test-results/coverage-report/Summary.json)
+          BRANCH=$(jq -r '.summary.branchcoverage' artifacts/test-results/coverage-report/Summary.json)
+          echo "line=$LINE% (gate 80%), branch=$BRANCH% (gate 70%)"
+          awk -v l="$LINE" -v b="$BRANCH" 'BEGIN { exit !(l >= 80 && b >= 70) }' \
+            || { echo "::error::Coverage below gate: line $LINE% (need 80%), branch $BRANCH% (need 70%)"; exit 1; }
 
       - name: Upload test results and coverage
         if: always()
