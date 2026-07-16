@@ -86,6 +86,25 @@ public class DataverseClientBatchTests
     }
 
     [Fact]
+    public async Task Nested_changeset_without_header_terminator_is_skipped()
+    {
+        // A nested multipart declaration whose header block never ends must not be
+        // re-parsed as its own preamble (this shape used to recurse until stack overflow).
+        string responseBody =
+            "--rsp\r\n" +
+            "Content-Type: multipart/mixed; boundary=cs1\r\n" +
+            "--rsp--\r\n";
+
+        var fake = new FakeHttpMessageHandler();
+        fake.Enqueue(_ => MultipartResponse("rsp", responseBody));
+
+        using DataverseClient client = ClientFactory.Create(fake);
+        BatchResponse response = await client.ExecuteBatchAsync(new BatchRequest().AddCreate(new Entity("account")));
+
+        Assert.Empty(response.Results);
+    }
+
+    [Fact]
     public async Task Atomic_failure_throws_with_the_inner_error()
     {
         string responseBody =

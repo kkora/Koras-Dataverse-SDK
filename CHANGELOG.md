@@ -6,6 +6,10 @@ All notable changes to the Koras Dataverse SDK are documented here. The format f
 
 ## [Unreleased]
 
+## [0.1.0-preview.1] — 2026-07-16
+
+First public preview.
+
 ### Added
 
 - `Koras.Dataverse.Abstractions`: `IDataverseClient`, late-bound `Entity` model with plain CLR
@@ -30,7 +34,7 @@ All notable changes to the Koras Dataverse SDK are documented here. The format f
   ADRs 0001–0010, samples (console, minimal API, worker service), benchmarks, unit /
   architecture / opt-in integration tests, GitHub Actions CI/CD.
 
-## [0.1.0-preview.1] — not yet released
+### Fixed
 
-The first public preview will be cut from `Unreleased` when NuGet publication starts; see
-`docs/release/release-process.md`.
+- `ExecuteBatchAsync`: parsing a change-set (nested multipart) response no longer recurses
+  infinitely — atomic batch responses previously crashed the process with a stack overflow. (KDV-005)
