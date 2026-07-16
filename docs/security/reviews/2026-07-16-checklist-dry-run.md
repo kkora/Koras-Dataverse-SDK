@@ -23,9 +23,9 @@ checks were executed for real, not assumed. Status legend: ✅ pass · ⚠️ op
 - ⚠️ Dependabot *security updates* also disabled (alerts work; automatic fix PRs don't).
 - ✅ Release-diff grep for secrets/tenant ids/real URLs: nothing found; samples read secrets
   from user-secrets/env vars and contain placeholders only.
-- ⚠️ Redaction coverage is *partial*: token-provider tests exist, but there is no dedicated
-  test asserting no `Authorization`/token material in any log output path. Recommend an
-  explicit redaction test pass (tracked in the follow-up issue).
+- ✅ Redaction: **closed by follow-up** — `LogRedactionTests` runs the full DI pipeline at
+  Trace with a sentinel bearer token (success, server-echoes-token failure, and retry paths)
+  and asserts no token material reaches any log line.
 
 ### §3 Injection and input handling
 

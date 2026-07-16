@@ -25,6 +25,10 @@ All notable changes to the Koras Dataverse SDK are documented here. The format f
   telemetry cost comparison); first baseline captured.
 - Security-checklist dry run executed and recorded
   (`docs/security/reviews/2026-07-16-checklist-dry-run.md`); open findings tracked in #12.
+- Release-integrity hardening (#12): all GitHub Actions pinned by commit SHA, CycloneDX
+  SBOMs generated per package and attached to releases, security checklist updated for
+  Trusted Publishing, and an explicit log-redaction test (full pipeline at Trace with a
+  sentinel token).
 
 ## [0.1.0-preview.2] — 2026-07-16
 

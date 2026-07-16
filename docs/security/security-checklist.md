@@ -84,9 +84,11 @@
       SourceLink metadata present in packages.
 - [ ] GitHub Actions in release workflow pinned by SHA; no new unpinned third-party
       actions.
-- [ ] Publish restricted to the `nuget-release` environment with required reviewers;
-      NUGET_API_KEY scope and expiry checked
-      ([nuget-publishing.md](../release/nuget-publishing.md)).
+- [ ] Publish restricted to the `nuget-release` environment with required reviewers.
+      Publishing uses NuGet.org **Trusted Publishing** (OIDC): verify the trusted-publishing
+      policy on nuget.org still targets exactly this repository, `release.yml`, and the
+      `nuget-release` environment, and that no long-lived NuGet API key exists as a
+      repository/environment secret ([nuget-publishing.md](../release/nuget-publishing.md)).
 - [ ] *(1.0+)* Packages author-signed with the Koras certificate; signature and
       timestamp verified on the packed artifacts before push.
 - [ ] `Koras.*` NuGet prefix reservation active.
