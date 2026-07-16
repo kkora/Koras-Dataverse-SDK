@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <PackageId>Koras.Dataverse.OpenTelemetry</PackageId>
+    <Description>OpenTelemetry integration for the Koras Dataverse SDK: one-line registration of the SDK's ActivitySource and Meter with TracerProviderBuilder and MeterProviderBuilder.</Description>
+    <PackageTags>dataverse;powerplatform;opentelemetry;tracing;metrics;observability</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Koras.Dataverse/Koras.Dataverse.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenTelemetry.Api" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,43 @@
+name: Prerelease packages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  prerelease:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - name: Restore and build
+        run: |
+          dotnet restore Koras.Dataverse.slnx
+          dotnet build Koras.Dataverse.slnx --configuration Release --no-restore
+
+      - name: Pack CI prerelease (0.1.0-ci.<run>)
+        run: >
+          dotnet pack Koras.Dataverse.slnx --configuration Release --no-build
+          --output artifacts/packages
+          -p:VersionSuffix=ci.${{ github.run_number }}
+
+      - name: Upload prerelease packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: prerelease-packages
+          path: artifacts/packages/
+          retention-days: 14
