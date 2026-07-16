@@ -163,7 +163,15 @@ public sealed partial class DataverseClient
             {
                 int lineEnd = part.IndexOf("\r\n", nestedIndex, StringComparison.Ordinal);
                 string nestedBoundary = (lineEnd > 0 ? part[(nestedIndex + 9)..lineEnd] : part[(nestedIndex + 9)..]).Trim().Trim('"');
-                ParseMultipart(part, nestedBoundary, results);
+
+                // Recurse only into the content after the nested header block; passing the whole
+                // part would re-match this header on the preamble segment and never terminate.
+                int nestedBodyStart = part.IndexOf("\r\n\r\n", StringComparison.Ordinal);
+                if (nestedBodyStart > 0)
+                {
+                    ParseMultipart(part[(nestedBodyStart + 4)..], nestedBoundary, results);
+                }
+
                 continue;
             }
 
