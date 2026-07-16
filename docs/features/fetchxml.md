@@ -45,7 +45,7 @@ Fixed by master plan §4:
 var fetch = FetchXml.For("account")
     .Attributes("name", "revenue")
     .Where(f => f.Eq("statecode", 0).And(a => a.Like("name", "Contoso%")))
-    .Link("contact", from: "primarycontactid", to: "contactid",
+    .Link("contact", from: "contactid", to: "primarycontactid",
           l => l.Alias("pc").Attributes("fullname"))
     .OrderBy("name").Top(50)
     .Build();

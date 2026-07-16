@@ -60,7 +60,10 @@ choice labels, formatted dates, lookup display names — keyed by column logical
 
 A lookup value is an `EntityReference(tableName, id)`. On writes the SDK serializes it as the
 Web API's `@odata.bind` reference automatically; on reads, lookup columns are materialized back
-into `EntityReference` instances (with `Name` populated from annotations when available).
+into `EntityReference` instances (with `Name` populated from annotations when available). Note
+the Web API's naming asymmetry: you write under the navigation property name
+(`primarycontactid`), but responses return the lookup under its value-column name
+(`_primarycontactid_value`) — read it from there.
 
 ## Logical names in, entity set names handled for you
 
