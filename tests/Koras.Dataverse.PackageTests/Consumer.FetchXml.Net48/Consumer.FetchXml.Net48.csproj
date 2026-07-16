@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Proves the netstandard2.0 asset of Koras.Dataverse.FetchXml is consumable from a
+       .NET Framework 4.8 project with the C# 7.3 compiler defaults — the Dataverse
+       plug-in assembly scenario. Reference assemblies make this compile on any OS. -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <KorasPackageVersion Condition="'$(KorasPackageVersion)' == ''">0.1.0-*</KorasPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Koras.Dataverse.FetchXml" Version="$(KorasPackageVersion)" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

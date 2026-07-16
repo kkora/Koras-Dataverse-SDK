@@ -35,6 +35,17 @@ jobs:
           --output artifacts/packages
           -p:VersionSuffix=ci.${{ github.run_number }}
 
+      # Consume the just-packed packages the way a real project would (local feed via
+      # tests/Koras.Dataverse.PackageTests/nuget.config). Includes the net48 consumer
+      # proving the FetchXml netstandard2.0 asset (Dataverse plug-in scenario).
+      - name: Package consumption tests
+        run: |
+          VERSION=0.1.0-ci.${{ github.run_number }}
+          dotnet build tests/Koras.Dataverse.PackageTests/Consumer.FetchXml.Net48 -p:KorasPackageVersion=$VERSION
+          dotnet build tests/Koras.Dataverse.PackageTests/Consumer.Core -p:KorasPackageVersion=$VERSION
+          dotnet run --project tests/Koras.Dataverse.PackageTests/Consumer.Core --framework net8.0 --no-build -p:KorasPackageVersion=$VERSION
+          dotnet run --project tests/Koras.Dataverse.PackageTests/Consumer.Core --framework net10.0 --no-build -p:KorasPackageVersion=$VERSION
+
       - name: Upload prerelease packages
         uses: actions/upload-artifact@v4
         with:

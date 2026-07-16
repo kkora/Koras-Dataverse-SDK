@@ -1,0 +1,5 @@
+<!-- Intentionally empty: stops inheritance of the repository build props (analyzers,
+     warnings-as-errors, central package management). Consumer projects must build the way
+     a real consumer would — with plain SDK defaults. -->
+<Project>
+</Project>

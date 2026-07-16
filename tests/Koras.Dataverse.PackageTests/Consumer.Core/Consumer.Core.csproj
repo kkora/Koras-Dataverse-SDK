@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Proves the full Koras.Dataverse package (and its dependency graph: Abstractions,
+       FetchXml, Azure.Identity, Microsoft.Extensions.*) restores and compiles on the
+       supported modern TFMs. -->
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net10.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <KorasPackageVersion Condition="'$(KorasPackageVersion)' == ''">0.1.0-*</KorasPackageVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Koras.Dataverse" Version="$(KorasPackageVersion)" />
+    <PackageReference Include="Koras.Dataverse.OpenTelemetry" Version="$(KorasPackageVersion)" />
+  </ItemGroup>
+
+</Project>

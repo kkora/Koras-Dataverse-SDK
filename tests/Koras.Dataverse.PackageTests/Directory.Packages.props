@@ -1,0 +1,4 @@
+<!-- Intentionally empty: stops central package management from applying to consumer
+     projects, which reference the packed Koras.Dataverse.* packages by version. -->
+<Project>
+</Project>
