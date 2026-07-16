@@ -58,3 +58,4 @@ nunit-*.xml
 
 # Build output
 artifacts/
+BenchmarkDotNet.Artifacts/
