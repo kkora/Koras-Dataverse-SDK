@@ -4,9 +4,9 @@ using Koras.Dataverse.Serialization;
 
 namespace Koras.Dataverse.Benchmarks;
 
-/// <summary>Benchmarks for entity JSON read/write (KDV-002 hot paths).</summary>
+/// <summary>Entity JSON read/write (docs/performance/benchmarks.md §2.3, KDV-002).</summary>
 [MemoryDiagnoser]
-public class SerializationBenchmarks
+public class EntitySerializationBenchmarks
 {
     private static readonly EntityJsonSerializer Serializer = new(new EntitySetNameResolver(new Dictionary<string, string>()));
 
