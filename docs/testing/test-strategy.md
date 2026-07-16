@@ -214,7 +214,7 @@ DI registration against a fake handler). Details in
 | **xUnit built-in assertions** | Assertions | See §5.1 |
 | **NSubstitute** | Test doubles for interfaces (`IDataverseTokenProvider`, logging, etc.) | Friendly syntax, actively maintained, BSD-licensed |
 | **NetArchTest.Rules** | Architecture tests | Lightweight, assertion-style structural rules |
-| **coverlet.collector** | Coverage | Cross-platform, integrates with `dotnet test --collect`, feeds the ratchet |
+| **Microsoft Code Coverage collector** (`--collect "Code Coverage;Format=cobertura"`, ships with Microsoft.NET.Test.Sdk) | Coverage | Cross-platform cobertura output, feeds the ratchet. `coverlet.collector` remains referenced as a fallback, but the 10.x line produced empty reports against .NET 10 test hosts, so CI uses the Microsoft collector |
 | **BenchmarkDotNet** | Benchmarks | Industry standard; MemoryDiagnoser for allocation tracking |
 | **Microsoft.CodeAnalysis.PublicApiAnalyzers** | API surface tracking | Reviewable public API diffs |
 

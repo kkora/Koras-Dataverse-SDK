@@ -35,7 +35,7 @@ jobs:
       - name: Test with coverage
         run: >
           dotnet test Koras.Dataverse.slnx --configuration Release --no-build
-          --collect:"XPlat Code Coverage"
+          --collect "Code Coverage;Format=cobertura"
           --results-directory artifacts/test-results
           --logger "trx;LogFilePrefix=results"
 

@@ -207,7 +207,7 @@ changes only in majors; `[Obsolete]` one minor before removal; see `docs/api/bac
 - **Versioning:** SemVer 2.0; 0.x = preview; 1.0 freezes the public API.
 
 Diagrams live in `docs/architecture/diagrams.md`; decisions in
-`docs/architecture/decision-records/` (ADR-0001..ADR-0008).
+`docs/architecture/decision-records/` (ADR-0001..ADR-0010).
 
 ---
 
