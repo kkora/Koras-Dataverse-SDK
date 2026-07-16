@@ -1,0 +1,47 @@
+name: 🐛 Bug report
+description: Something in the SDK does not behave as documented.
+labels: [bug, triage]
+body:
+  - type: input
+    id: version
+    attributes:
+      label: Package and version
+      placeholder: Koras.Dataverse 0.1.0-preview.1
+    validations:
+      required: true
+  - type: input
+    id: tfm
+    attributes:
+      label: Target framework / runtime
+      placeholder: net8.0 on Linux (Azure App Service)
+    validations:
+      required: true
+  - type: textarea
+    id: repro
+    attributes:
+      label: Minimal reproduction
+      description: Smallest code sample that shows the problem. Redact URLs, tenant ids, and secrets.
+      render: csharp
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: DataverseError details (if any)
+      description: Category, HTTP status, error code, request id — never paste tokens.
+      render: text
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Checks
+      options:
+        - label: I searched existing issues.
+          required: true
+        - label: This is not a security vulnerability (those go through SECURITY.md).
+          required: true
