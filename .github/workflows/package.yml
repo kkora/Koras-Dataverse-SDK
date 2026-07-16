@@ -36,7 +36,7 @@ jobs:
           -p:VersionSuffix=ci.${{ github.run_number }}
 
       - name: Upload prerelease packages
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: prerelease-packages
           path: artifacts/packages/
