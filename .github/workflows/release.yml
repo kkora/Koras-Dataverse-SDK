@@ -13,12 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: nuget-release # protected environment bound to the NuGet.org Trusted Publishing policy
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           fetch-depth: 0
 
       - name: Set up .NET
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@67a3573c9a986a3f9c594539f4ab511d57bb3ce9 # v4
         with:
           dotnet-version: |
             8.0.x
@@ -41,11 +41,23 @@ jobs:
           --output artifacts/packages
           -p:Version=${{ steps.version.outputs.version }}
 
+      # One CycloneDX SBOM per shipped package, attached to the GitHub release
+      # (security checklist §7).
+      - name: Generate SBOMs
+        run: |
+          dotnet tool install --global CycloneDX
+          for project in Koras.Dataverse.Abstractions Koras.Dataverse.FetchXml Koras.Dataverse Koras.Dataverse.OpenTelemetry; do
+            dotnet-CycloneDX "src/$project/$project.csproj" \
+              -o artifacts/sbom \
+              -fn "$project.${{ steps.version.outputs.version }}.cdx.json" \
+              -F Json
+          done
+
       # Trusted Publishing: exchanges the workflow's OIDC token for a short-lived
       # NuGet.org API key — no long-lived NUGET_API_KEY secret to manage.
       - name: NuGet login (Trusted Publishing)
         id: nuget-login
-        uses: NuGet/login@v1
+        uses: NuGet/login@8d196754b4036150537f80ac539e15c2f1028841 # v1
         with:
           user: kora.kanchan
 
@@ -57,10 +69,11 @@ jobs:
           --skip-duplicate
 
       - name: Create GitHub release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
         with:
           generate_release_notes: true
           prerelease: ${{ contains(steps.version.outputs.version, '-') }}
           files: |
             artifacts/packages/*.nupkg
             artifacts/packages/*.snupkg
+            artifacts/sbom/*.cdx.json
