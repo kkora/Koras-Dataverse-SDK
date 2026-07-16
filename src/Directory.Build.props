@@ -8,7 +8,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
 
     <!-- NuGet metadata -->
-    <Authors>Koras Technologies</Authors>
+    <Authors>Kanchan Kora</Authors>
     <Company>Koras Technologies</Company>
     <Copyright>Copyright © Koras Technologies</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
