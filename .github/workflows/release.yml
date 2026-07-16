@@ -6,11 +6,12 @@ on:
 
 permissions:
   contents: write # create the GitHub release
+  id-token: write # OIDC token for NuGet.org Trusted Publishing
 
 jobs:
   release:
     runs-on: ubuntu-latest
-    environment: nuget-release # protected environment holding NUGET_API_KEY
+    environment: nuget-release # protected environment bound to the NuGet.org Trusted Publishing policy
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,10 +41,18 @@ jobs:
           --output artifacts/packages
           -p:Version=${{ steps.version.outputs.version }}
 
+      # Trusted Publishing: exchanges the workflow's OIDC token for a short-lived
+      # NuGet.org API key — no long-lived NUGET_API_KEY secret to manage.
+      - name: NuGet login (Trusted Publishing)
+        id: nuget-login
+        uses: NuGet/login@v1
+        with:
+          user: kora.kanchan
+
       - name: Publish to NuGet.org
         run: >
           dotnet nuget push "artifacts/packages/*.nupkg"
-          --api-key "${{ secrets.NUGET_API_KEY }}"
+          --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}"
           --source https://api.nuget.org/v3/index.json
           --skip-duplicate
 

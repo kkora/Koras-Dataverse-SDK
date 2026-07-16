@@ -1,6 +1,6 @@
 # Koras.Dataverse.OpenTelemetry
 
-OpenTelemetry wiring for the [Koras Dataverse SDK](https://github.com/korastechnologies/koras-dataverse).
+OpenTelemetry wiring for the [Koras Dataverse SDK](https://github.com/kkora/Koras-Dataverse-SDK).
 
 ```csharp
 services.AddOpenTelemetry()

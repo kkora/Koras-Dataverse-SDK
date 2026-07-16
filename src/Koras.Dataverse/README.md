@@ -22,7 +22,7 @@ public sealed class AccountService(IDataverseClient dataverse)
 }
 ```
 
-- **Docs & samples:** https://github.com/korastechnologies/koras-dataverse
+- **Docs & samples:** https://github.com/kkora/Koras-Dataverse-SDK
 - **License:** MIT · **Publisher:** Koras Technologies
 
 Failures surface as `DataverseException` with a normalized `DataverseError` (category, Dataverse

@@ -1,6 +1,6 @@
 # Koras.Dataverse.Abstractions
 
-Interfaces and models for the [Koras Dataverse SDK](https://github.com/korastechnologies/koras-dataverse):
+Interfaces and models for the [Koras Dataverse SDK](https://github.com/kkora/Koras-Dataverse-SDK):
 `IDataverseClient`, `Entity`, `EntityReference`, OData query builders, batch models, metadata and
 solution models, and the normalized `DataverseError` model.
 
