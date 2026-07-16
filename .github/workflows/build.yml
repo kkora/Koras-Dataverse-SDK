@@ -1,0 +1,62 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # deterministic builds + Source Link need history
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - name: Restore
+        run: dotnet restore Koras.Dataverse.slnx
+
+      - name: Build (Release, warnings as errors)
+        run: dotnet build Koras.Dataverse.slnx --configuration Release --no-restore
+
+      - name: Verify formatting
+        run: dotnet format Koras.Dataverse.slnx --verify-no-changes --no-restore
+
+      - name: Vulnerability audit
+        run: |
+          dotnet list Koras.Dataverse.slnx package --vulnerable --include-transitive | tee vulnerable.txt
+          ! grep -q "has the following vulnerable packages" vulnerable.txt
+
+      - name: Pack
+        run: dotnet pack Koras.Dataverse.slnx --configuration Release --no-build --output artifacts/packages
+
+      - name: Validate package contents
+        run: |
+          set -euo pipefail
+          for pkg in artifacts/packages/*.nupkg; do
+            echo "== $pkg"
+            unzip -l "$pkg" | grep -E "README.md|icon.png|\.xml" >/dev/null || { echo "missing README/icon/xml docs in $pkg"; exit 1; }
+          done
+          ls artifacts/packages/*.snupkg >/dev/null
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: artifacts/packages/

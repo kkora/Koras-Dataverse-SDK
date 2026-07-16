@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <PackageId>Koras.Dataverse</PackageId>
+    <Description>A modern, fluent, resilient .NET SDK for Microsoft Dataverse: authentication via Azure.Identity, CRUD, OData and FetchXML queries with automatic paging, batch operations, metadata and solution helpers, retry and throttling handling, dependency injection, health checks, logging, and OpenTelemetry-ready diagnostics.</Description>
+    <PackageTags>dataverse;powerplatform;dynamics365;powerpages;webapi;odata;fetchxml;sdk;crm</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Koras.Dataverse.Abstractions/Koras.Dataverse.Abstractions.csproj" />
+    <ProjectReference Include="../Koras.Dataverse.FetchXml/Koras.Dataverse.FetchXml.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Core" />
+    <PackageReference Include="Azure.Identity" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Microsoft.Extensions.Options" />
+    <PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Koras.Dataverse.UnitTests" />
+    <InternalsVisibleTo Include="Koras.Dataverse.Benchmarks" />
+  </ItemGroup>
+
+</Project>

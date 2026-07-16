@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/benchmarks/">
+    <Project Path="benchmarks/Koras.Dataverse.Benchmarks/Koras.Dataverse.Benchmarks.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/Console.Sample/Console.Sample.csproj" />
+    <Project Path="samples/MinimalApi.Sample/MinimalApi.Sample.csproj" />
+    <Project Path="samples/WorkerService.Sample/WorkerService.Sample.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/Koras.Dataverse.Abstractions/Koras.Dataverse.Abstractions.csproj" />
+    <Project Path="src/Koras.Dataverse.FetchXml/Koras.Dataverse.FetchXml.csproj" />
+    <Project Path="src/Koras.Dataverse.OpenTelemetry/Koras.Dataverse.OpenTelemetry.csproj" />
+    <Project Path="src/Koras.Dataverse/Koras.Dataverse.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Koras.Dataverse.ArchitectureTests/Koras.Dataverse.ArchitectureTests.csproj" />
+    <Project Path="tests/Koras.Dataverse.IntegrationTests/Koras.Dataverse.IntegrationTests.csproj" />
+    <Project Path="tests/Koras.Dataverse.UnitTests/Koras.Dataverse.UnitTests.csproj" />
+  </Folder>
+</Solution>
