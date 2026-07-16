@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Text.Json;
 
 namespace Koras.Dataverse.Errors;
@@ -9,6 +10,11 @@ internal static class DataverseErrorParser
 {
     private const string RequestIdHeader = "x-ms-service-request-id";
 
+    // Error payloads larger than this are not parsed (classification proceeds from the
+    // status code alone) so a hostile or misrouted response cannot force an unbounded
+    // string allocation or an oversized exception message.
+    private const int MaxErrorBodyChars = 64 * 1024;
+
     public static async Task<DataverseError> FromResponseAsync(HttpResponseMessage response, CancellationToken cancellationToken)
     {
         string? code = null;
@@ -16,7 +22,7 @@ internal static class DataverseErrorParser
 
         try
         {
-            string body = await response.Content.ReadAsStringAsync(cancellationToken).ConfigureAwait(false);
+            string body = await ReadBodyCappedAsync(response.Content, cancellationToken).ConfigureAwait(false);
             if (!string.IsNullOrWhiteSpace(body))
             {
                 (code, message) = ParseBody(body);
@@ -28,6 +34,31 @@ internal static class DataverseErrorParser
         }
 
         return Create((int)response.StatusCode, code, message, RequestId(response), RetryAfter(response));
+    }
+
+    private static async Task<string> ReadBodyCappedAsync(HttpContent content, CancellationToken cancellationToken)
+    {
+        Stream stream = await content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+        await using (stream.ConfigureAwait(false))
+        {
+            using var reader = new StreamReader(stream);
+            char[] buffer = new char[4096];
+            var body = new StringBuilder(capacity: 1024);
+            int read;
+            while ((read = await reader.ReadAsync(buffer.AsMemory(), cancellationToken).ConfigureAwait(false)) > 0)
+            {
+                if (body.Length + read > MaxErrorBodyChars)
+                {
+                    // Truncated payloads are intentionally not parsed as JSON; the status
+                    // code still classifies the failure.
+                    return string.Empty;
+                }
+
+                body.Append(buffer, 0, read);
+            }
+
+            return body.ToString();
+        }
     }
 
     public static (string? Code, string? Message) ParseBody(string body)

@@ -29,6 +29,32 @@ public class DataverseErrorParserTests
     }
 
     [Fact]
+    public async Task Oversized_error_bodies_are_not_parsed_but_still_classified()
+    {
+        // > 64 KB payload: the parser must not buffer/parse it; status classification survives.
+        string oversized = "{\"error\":{\"code\":\"0x1\",\"message\":\"" + new string('x', 70_000) + "\"}}";
+        HttpResponseMessage response = FakeHttpMessageHandler.Json(HttpStatusCode.BadRequest, oversized);
+
+        DataverseError error = await DataverseErrorParser.FromResponseAsync(response, CancellationToken.None);
+
+        Assert.Equal(DataverseErrorCategory.Validation, error.Category);
+        Assert.Equal(400, error.HttpStatusCode);
+        Assert.Null(error.ErrorCode);
+    }
+
+    [Fact]
+    public async Task Bodies_under_the_size_cap_parse_normally()
+    {
+        string large = "{\"error\":{\"code\":\"0x2\",\"message\":\"" + new string('y', 50_000) + "\"}}";
+        HttpResponseMessage response = FakeHttpMessageHandler.Json(HttpStatusCode.BadRequest, large);
+
+        DataverseError error = await DataverseErrorParser.FromResponseAsync(response, CancellationToken.None);
+
+        Assert.Equal("0x2", error.ErrorCode);
+        Assert.Equal(50_000, error.Message?.Length);
+    }
+
+    [Fact]
     public async Task Response_body_code_message_and_headers_are_captured()
     {
         HttpResponseMessage response = FakeHttpMessageHandler.Json(
