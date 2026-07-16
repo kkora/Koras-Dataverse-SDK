@@ -24,7 +24,7 @@
     <PackageVersion Include="Azure.Identity" Version="1.21.0" />
 
     <!-- OpenTelemetry helper package only -->
-    <PackageVersion Include="OpenTelemetry.Api" Version="1.16.0" />
+    <PackageVersion Include="OpenTelemetry.Api" Version="1.17.0" />
 
     <!-- Samples -->
     <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.10" />
