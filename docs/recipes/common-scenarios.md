@@ -52,14 +52,19 @@ Console.WriteLine(result.Created
 
 ```csharp
 Entity account = await dataverse.RetrieveAsync(
-    "account", accountId, ColumnSet.Of("name", "revenue", "primarycontactid"), ct);
+    "account", accountId, ColumnSet.Of("name", "revenue", "_primarycontactid_value"), ct);
 
 string? name = account.GetValue<string>("name");
-EntityReference? primaryContact = account.GetValue<EntityReference>("primarycontactid");
+EntityReference? primaryContact = account.GetValue<EntityReference>("_primarycontactid_value");
 ```
 
 Omitting the column set (or passing `ColumnSet.All`) returns every column — fine for
 exploration, wasteful in production.
+
+Note the asymmetry the Web API imposes on lookups: you **write** them under the navigation
+property name (`["primarycontactid"] = new EntityReference(…)`), but responses return them
+under the value-column name (`_primarycontactid_value`), which is where the materialized
+`EntityReference` lands (with `Name` populated when annotations are on).
 
 ## Query active rows
 

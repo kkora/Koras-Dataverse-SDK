@@ -1,11 +1,23 @@
 # Public API Design
 
 > Expands §4 of [`docs/planning/master-plan.md`](../planning/master-plan.md). If this document
-> and the master plan disagree, the master plan wins. This is a pre-implementation design
-> document: signatures shown here are the design target for `0.1.0-preview.1`. Where the
-> master plan does not specify a detail, the design below is conservative and marked
-> **subject to implementation review**; such details may be adjusted during the preview window
-> under the PublicAPI-file process (ADR-0010).
+> and the master plan disagree, the master plan wins. Signatures shown here were the design
+> target for `0.1.0-preview.1`; **the implemented surface (see
+> [`../api-reference/overview.md`](../api-reference/overview.md) and the source XML docs) is
+> authoritative** where a detail below differs. Known deltas accepted during implementation:
+>
+> - `RetrieveAsync` takes `ColumnSet? columns = null` (null = all columns); columns are built
+>   with `ColumnSet.Of(...)`/`ColumnSet.All` rather than a public constructor.
+> - Implemented but not shown in every sketch below: `CreateAndReturnAsync`,
+>   `DeleteAsync(EntityReference)`, `UpsertAsync(entity, alternateKey)`, `AssociateAsync` /
+>   `DisassociateAsync`, `FetchAllAsync(query, pageSize, ct)`, `Entity.FormattedValues`,
+>   `Entity.Attributes`, `Entity.ToReference()`, POCO mapping via `EntityMapper`.
+> - Sketched below but **deferred to the preview window** as candidates:
+>   `TryRetrieveAsync`, `Entity.Contains`/`AttributeNames` (use
+>   `Entity.Attributes.ContainsKey`/`.Keys` today).
+>
+> Remaining "subject to implementation review" notes are resolved the same way: the shipped
+> code + PublicAPI files (ADR-0010) decide.
 
 ## 1. Design rules
 
@@ -434,7 +446,7 @@ public sealed class FetchLinkEntityBuilder
 var fetch = FetchXml.For("account")
     .Attributes("name", "revenue")
     .Where(f => f.Eq("statecode", 0).And(a => a.Like("name", "Contoso%")))
-    .Link("contact", from: "primarycontactid", to: "contactid",
+    .Link("contact", from: "contactid", to: "primarycontactid",
           l => l.Alias("pc").Attributes("fullname"))
     .OrderBy("name").Top(50)
     .Build();

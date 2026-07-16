@@ -120,7 +120,8 @@ var account = new Entity("account", Guid.NewGuid())
     ["name"] = "Contoso",
     ["revenue"] = 25_000m,
     ["accountcategorycode"] = 1,
-    ["primarycontactid"] = new EntityReference("contact", Guid.NewGuid()) { Name = "Ada Lovelace" },
+    // Retrieved rows carry lookups under their _value names, so fake them the same way:
+    ["_primarycontactid_value"] = new EntityReference("contact", Guid.NewGuid()) { Name = "Ada Lovelace" },
 };
 account.FormattedValues["accountcategorycode"] = "Preferred Customer";
 account.FormattedValues["revenue"] = "$25,000.00";

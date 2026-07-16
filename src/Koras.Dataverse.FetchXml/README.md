@@ -7,7 +7,7 @@ encoding of names and values.
 var query = FetchXml.For("account")
     .Attributes("name", "revenue")
     .Where(f => f.Eq("statecode", 0).Like("name", "Contoso%"))
-    .Link("contact", from: "primarycontactid", to: "contactid",
+    .Link("contact", from: "contactid", to: "primarycontactid",
           l => l.Alias("pc").Attributes("fullname"))
     .OrderBy("name")
     .Top(50)

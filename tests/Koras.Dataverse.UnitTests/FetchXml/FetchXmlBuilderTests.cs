@@ -99,15 +99,15 @@ public class FetchXmlBuilderTests
     public void Link_renders_link_entity_with_alias_and_nested_content()
     {
         FetchXmlQuery query = Dataverse.FetchXml.FetchXml.For("account")
-            .Link("contact", "primarycontactid", "contactid",
+            .Link("contact", "contactid", "primarycontactid",
                 l => l.Alias("pc").Attributes("fullname").Where(f => f.IsNotNull("emailaddress1")),
                 FetchLinkType.Outer)
             .Build();
 
         XElement link = XElement.Parse(query.Xml).Descendants("link-entity").Single();
         Assert.Equal("contact", link.Attribute("name")!.Value);
-        Assert.Equal("primarycontactid", link.Attribute("from")!.Value);
-        Assert.Equal("contactid", link.Attribute("to")!.Value);
+        Assert.Equal("contactid", link.Attribute("from")!.Value);
+        Assert.Equal("primarycontactid", link.Attribute("to")!.Value);
         Assert.Equal("outer", link.Attribute("link-type")!.Value);
         Assert.Equal("pc", link.Attribute("alias")!.Value);
         Assert.Single(link.Elements("attribute"));

@@ -12,7 +12,7 @@ public class QueryBuilderBenchmarks
     public string BuildFetchXml() => FetchXml.FetchXml.For("account")
         .Attributes("name", "revenue", "statecode")
         .Where(f => f.Eq("statecode", 0).Like("name", "Contoso%").In("industrycode", 1, 2, 3))
-        .Link("contact", "primarycontactid", "contactid", l => l.Alias("pc").Attributes("fullname"))
+        .Link("contact", "contactid", "primarycontactid", l => l.Alias("pc").Attributes("fullname"))
         .OrderBy("name")
         .Top(50)
         .Build()
