@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>Koras.Dataverse.Samples.ConsoleSample</RootNamespace>
+    <UserSecretsId>koras-dataverse-console-sample</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../../src/Koras.Dataverse/Koras.Dataverse.csproj" />
+  </ItemGroup>
+
+</Project>

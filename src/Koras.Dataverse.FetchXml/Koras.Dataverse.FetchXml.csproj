@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;net8.0;net9.0;net10.0</TargetFrameworks>
+    <PackageId>Koras.Dataverse.FetchXml</PackageId>
+    <Description>A dependency-free fluent FetchXML builder for Microsoft Dataverse with strict encoding of values. Targets netstandard2.0 so it can also be used from Dataverse plug-in assemblies.</Description>
+    <PackageTags>dataverse;powerplatform;dynamics365;fetchxml;query;sdk</PackageTags>
+    <!-- CA1510: ArgumentNullException.ThrowIfNull does not exist on netstandard2.0; this project shares source across TFMs. -->
+    <NoWarn>$(NoWarn);CA1510</NoWarn>
+  </PropertyGroup>
+
+</Project>

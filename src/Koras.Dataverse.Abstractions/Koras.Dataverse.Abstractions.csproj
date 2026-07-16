@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
+    <PackageId>Koras.Dataverse.Abstractions</PackageId>
+    <Description>Abstractions for the Koras Dataverse SDK: client interfaces, entity model, query models, batch models, metadata models, and the strongly typed Dataverse error model. Reference this package from application and library code that should not depend on the SDK implementation.</Description>
+    <PackageTags>dataverse;powerplatform;dynamics365;abstractions;sdk</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../Koras.Dataverse.FetchXml/Koras.Dataverse.FetchXml.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Koras.Dataverse" />
+    <InternalsVisibleTo Include="Koras.Dataverse.UnitTests" />
+  </ItemGroup>
+
+</Project>

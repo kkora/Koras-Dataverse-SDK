@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write # create the GitHub release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: nuget-release # protected environment holding NUGET_API_KEY
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+            10.0.x
+
+      - name: Derive version from tag
+        id: version
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Restore, build, test
+        run: |
+          dotnet restore Koras.Dataverse.slnx
+          dotnet build Koras.Dataverse.slnx --configuration Release --no-restore -p:Version=${{ steps.version.outputs.version }}
+          dotnet test Koras.Dataverse.slnx --configuration Release --no-build
+
+      - name: Pack
+        run: >
+          dotnet pack Koras.Dataverse.slnx --configuration Release --no-build
+          --output artifacts/packages
+          -p:Version=${{ steps.version.outputs.version }}
+
+      - name: Publish to NuGet.org
+        run: >
+          dotnet nuget push "artifacts/packages/*.nupkg"
+          --api-key "${{ secrets.NUGET_API_KEY }}"
+          --source https://api.nuget.org/v3/index.json
+          --skip-duplicate
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          prerelease: ${{ contains(steps.version.outputs.version, '-') }}
+          files: |
+            artifacts/packages/*.nupkg
+            artifacts/packages/*.snupkg
