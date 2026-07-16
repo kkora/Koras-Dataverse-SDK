@@ -6,6 +6,12 @@ All notable changes to the Koras Dataverse SDK are documented here. The format f
 
 ## [Unreleased]
 
+### Fixed
+
+- `DataverseErrorParser` now caps error-response bodies at 64 K characters: oversized or
+  hostile payloads are no longer buffered into unbounded strings; classification falls back
+  to the HTTP status code. (KDV-009, security-checklist §5)
+
 ### Added
 
 - Public API surface tracking: `PublicAPI.Shipped.txt`/`PublicAPI.Unshipped.txt` populated for
@@ -14,6 +20,11 @@ All notable changes to the Koras Dataverse SDK are documented here. The format f
   Framework 4.8 consumer proving the `Koras.Dataverse.FetchXml` netstandard2.0 asset.
 - CI coverage gate (≥ 80 % line / ≥ 70 % branch on `Koras.Dataverse` + `Koras.Dataverse.FetchXml`)
   and a nightly live-integration workflow (skips cleanly until environment secrets exist).
+- Benchmark suites per `docs/performance/benchmarks.md`: FetchXml/OData build, entity
+  serialization, error parsing, batch payload, and pipeline overhead (with listener on/off
+  telemetry cost comparison); first baseline captured.
+- Security-checklist dry run executed and recorded
+  (`docs/security/reviews/2026-07-16-checklist-dry-run.md`); open findings tracked in #12.
 
 ## [0.1.0-preview.2] — 2026-07-16
 

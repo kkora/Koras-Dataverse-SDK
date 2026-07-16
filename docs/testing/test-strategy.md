@@ -283,8 +283,12 @@ can revisit this.
 ## 8. Coverage targets and policy
 
 - **Targets:** ≥ 80 % line and ≥ 70 % branch on `Koras.Dataverse` and
-  `Koras.Dataverse.FetchXml` combined. `Abstractions` is mostly models and interfaces; it is
-  measured but not separately gated.
+  `Koras.Dataverse.FetchXml` combined. `Abstractions` is mostly models and interfaces and
+  `Koras.Dataverse.OpenTelemetry` is two subscription extensions; both are measured but not
+  gated — a deliberate scope choice, not an oversight.
+- **Gate active since 2026-07-16:** the `Tests` workflow merges coverlet cobertura output via
+  ReportGenerator (filtered to the two gated assemblies) and fails CI below 80 % line or
+  70 % branch.
 - **Ratchet, not gate-only:** CI records coverage per PR; a PR may not drop coverage below
   the recorded high-water mark by more than a small tolerance (1 percentage point) without
   an explicit maintainer waiver in the PR description. Once the targets are reached they
