@@ -6,6 +6,15 @@ All notable changes to the Koras Dataverse SDK are documented here. The format f
 
 ## [Unreleased]
 
+### Added
+
+- Public API surface tracking: `PublicAPI.Shipped.txt`/`PublicAPI.Unshipped.txt` populated for
+  all shipped packages (ADR-0010).
+- Package consumption tests (`tests/Koras.Dataverse.PackageTests`), including a .NET
+  Framework 4.8 consumer proving the `Koras.Dataverse.FetchXml` netstandard2.0 asset.
+- CI coverage gate (≥ 80 % line / ≥ 70 % branch on `Koras.Dataverse` + `Koras.Dataverse.FetchXml`)
+  and a nightly live-integration workflow (skips cleanly until environment secrets exist).
+
 ## [0.1.0-preview.2] — 2026-07-16
 
 ### Changed

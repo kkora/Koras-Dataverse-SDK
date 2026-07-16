@@ -3,7 +3,15 @@
 > The [master plan §8](master-plan.md#8-delivery-plan) milestone table expanded with
 > concrete deliverables and validation per milestone. Sequencing, entry/exit criteria,
 > and narrative live in [implementation-plan.md](implementation-plan.md); task detail
-> in [backlog.md](backlog.md). Status: none started (pre-implementation).
+> in [backlog.md](backlog.md).
+>
+> **Status (2026-07-16):** milestones 0–7 substantially complete; `0.1.0-preview.1` and
+> `0.1.0-preview.2` published to NuGet.org via Trusted Publishing (milestone 9 largely done —
+> `Koras.*` prefix reservation still pending). Milestone 8 (hardening) in progress: PublicAPI
+> tracking populated, package-consumption tests (incl. FetchXml netstandard2.0 consumer),
+> coverage gate (80/70), and the nightly live-integration workflow are in place; still open:
+> a provisioned live test environment (secrets), benchmark baselines, security-checklist dry
+> run, and final analyzer severities.
 
 | # | Milestone | Primary features | Deliverables | Validation (how we know it's done) |
 |---|---|---|---|---|
