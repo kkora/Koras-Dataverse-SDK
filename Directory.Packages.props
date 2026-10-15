@@ -11,13 +11,13 @@
     themselves target net8.0+. Per-TFM downpinning would only produce NU1605 downgrades (ADR-0009).
   -->
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.10" />
-    <PackageVersion Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="10.0.13" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="10.0.13" />
+    <PackageVersion Include="Microsoft.Extensions.Diagnostics.HealthChecks.Abstractions" Version="10.0.13" />
+    <PackageVersion Include="Microsoft.Extensions.Http" Version="10.0.13" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.13" />
+    <PackageVersion Include="Microsoft.Extensions.Options" Version="10.0.13" />
+    <PackageVersion Include="Microsoft.Extensions.Options.DataAnnotations" Version="10.0.13" />
 
     <!-- Authentication -->
     <PackageVersion Include="Azure.Core" Version="1.60.0" />
@@ -27,7 +27,7 @@
     <PackageVersion Include="OpenTelemetry.Api" Version="1.16.0" />
 
     <!-- Samples -->
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.10" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.13" />
 
     <!-- Analyzers -->
     <PackageVersion Include="Microsoft.CodeAnalysis.PublicApiAnalyzers" Version="5.6.0" />
